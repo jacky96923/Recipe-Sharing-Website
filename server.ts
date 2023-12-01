@@ -1,14 +1,15 @@
 import express from "express";
-import { Request, Response } from "express";
+// import { Request, Response } from "express";
+import { env } from './env'
+// import path from 'path'
+
 
 const app = express();
 
-app.get("/", function (req: Request, res: Response) {
-  res.end("Hello World");
-});
 
-const PORT = 8200;
+app.use(express.static('public'))
 
-app.listen(PORT, () => {
-  console.log(`Listening at http://localhost:${PORT}/`);
-});
+
+app.listen(env.PORT, ()=>{
+    console.log(env.PORT)
+})

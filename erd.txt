@@ -1,0 +1,146 @@
+# Visualize on https://erd.surge.sh
+# or https://quick-erd.surge.sh
+#
+# Relationship Types
+#  -    - one to one
+#  -<   - one to many
+#  >-   - many to one
+#  >-<  - many to many
+#  -0   - one to zero or one
+#  0-   - zero or one to one
+#  0-0  - zero or one to zero or one
+#  -0<  - one to zero or many
+#  >0-  - zero or many to one
+#
+////////////////////////////////////
+
+
+recipe
+------
+id integer PK
+user_id integer FK >0- user.id
+title integer
+video varchar(255)
+isVegetarian boolean
+cuisine_id integer FK >0- cuisine.id
+calories integer
+content text
+
+recipe_image
+------------
+id integer PK
+recipe_id integer FK >0- recipe.id
+image varchar(255)
+is_cover boolean
+
+
+recipe_ingredient
+-----------------
+id integer PK
+recipe_id integer FK >0- recipe.id
+ingredient_name text
+amount
+unit
+
+
+
+user
+----
+id integer PK
+password PK integer 
+email PK integer
+isVegetarian boolean
+
+
+coffee_transaction
+----
+id integer PK
+user_id integer FK >0- user.id
+coffee_amount integer 
+
+
+user_like
+---------
+id integer PK
+user_id integer FK >0- user.id
+recipe_id integer FK >0- recipe.id
+
+
+recipe_like
+---------
+id integer PK
+user_id integer FK >0- user.id
+recipe_id integer FK >0- recipe.id
+
+recipe_view
+-----------
+id integer PK
+user_id integer FK >0- user.id
+recipe_id integer FK >0- recipe.id
+
+
+cuisine
+-----------
+id integer PK
+name var(255)
+
+meal_schedule
+-----------
+user_id integer FK >0- user.id
+date date
+breafast_recipe_id integer FK >0- recipe.id
+lunch_recipe_id integer FK >0- recipe.id
+dinner_recipe_id integer FK >0- recipe.id
+
+
+
+user_cuisine
+-----------
+id integer PK
+user_id integer FK >0- user.id
+cuisine_id integer FK >0- cuisine.id
+preference enum ('like','dislike')
+
+
+allergies
+-----------
+id integer PK
+name var(255) 
+
+
+user_allergies
+-----------
+id integer PK
+user_id integer FK >0- user.id
+allergies_id integer FK >0- allergies.id
+
+
+recipe_allergies
+-----------
+id integer PK
+recipe_id integer FK >0- recipe.id
+allergies_id integer FK >0- allergies.id
+
+
+# zoom: 1.000
+# view: (-105, 70)
+# text-bg: #6495ed
+# text-color: #000000
+# diagram-bg: #f5f5f5
+# diagram-text: #000000
+# table-bg: #ffffff
+# table-text: #000000
+# recipe (1125, 515)
+# recipe_image (815, -64)
+# recipe_ingredient (1426, 364)
+# user (1288, 76)
+# coffee_transaction (156, 11)
+# user_like (497, 416)
+# recipe_like (198, 419)
+# recipe_view (514, 249)
+# cuisine (755, 708)
+# meal_schedule (742, 164)
+# user_cuisine (1451, 772)
+# allergies (202, 264)
+# user_allergies (490, 36)
+# recipe_allergies (320, 645)

@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import path from 'path'
+import express from "express";
 
 
 
@@ -9,10 +9,4 @@ export let recipeRouter = Router()
 
 
 
-
-
-recipeRouter.get('/recipes', (req, res)=>{
-    let file= path.resolve('public/recipes/recipes.html')
-    res.sendFile(file)
-    console.log('recipe content')
-})
+recipeRouter.use(express.static('public'));

@@ -121,6 +121,7 @@ create table recipe_allergies(
     allergies_id integer references allergies(id)
 );
 
+alter table recipe alter column title type text;
 
 
 

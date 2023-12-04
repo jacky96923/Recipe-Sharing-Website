@@ -1,9 +1,29 @@
 import express from "express";
 import { env } from './env'
+import dotenv from "dotenv";
+import { Client } from "pg";
 import expressSession from 'express-session'
 import path from 'path'
 import dayjs from 'dayjs'
 import { recipeRouter } from './recipes'
+
+
+
+
+dotenv.config();
+
+export const client = new Client({
+  database: process.env.DB_NAME,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD
+});
+
+client.once("connect", () => {
+    console.log("Connected to the database");
+  });
+client.connect()
+
+
 
 const app = express();
 
@@ -45,15 +65,8 @@ app.use((req,res,next)=>{
 //add recipe page
 app.use(recipeRouter)
 
-
 //page load setting
 app.use(express.static('public'))
-
-app.get('/recipes', (req, res)=>{
-    let file= path.resolve('public/recipes.html')
-    res.sendFile(file)
-    console.log('recipe content')
-})
 
 
 //page port setting

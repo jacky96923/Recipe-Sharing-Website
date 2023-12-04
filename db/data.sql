@@ -1,13 +1,24 @@
+-- test data
 
-insert into users (password, email, user_name) VALUES ('passwords', 'peter@gmail.com', 'Peter');
 insert into users (password,email,profile_pic,user_name) values ('1234','cock@cuntmail.com','/Volumes/SD/OSX Stuff/DownloadsEX/meme_man.webp' , 'fuckface');
 insert into users (password,email,profile_pic,user_name) values ('88888888', 'dicks@dicksmail.com','/Volumes/SD/OSX Stuff/DownloadsEX/photo-1576618148400-f54bed99fcfd.jpeg','dickface');
 
-insert into cuisine (name) VALUES ('Japanese');
 insert into cuisine (name) values ('chinese');
 insert into cuisine (name) values ('Thai');
 
-insert into diet (name) VALUES (not);
+insert into diet (name) values ('vegetarian');
+insert into diet (name) values ('Pescetarian');
 
-insert into allergies (name) VALUES ('seafood'),('lemon');
+insert into allergies (name) values ('Peanut-Free');
+insert into allergies (name) values ('Gluten-Free');
+
+insert into user_cuisine (user_id, cuisine_id, preference) values ( 1, 1, 'like');
+insert into user_cuisine (user_id, cuisine_id, preference) values ( 2, 2, 'dislike');
+
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) values ( 1, 'fake chicken', '/Users/kaheilai/Desktop/uncycle1.m4v', 1, 800, 'When creating this recipe, I did a bunch of research on KFC’s famous seasoning blend. While their method is technically “top secret,” I did find some base recipes for the blend that I was able to tweak and make my own. There are quite a few components to the seasoning blend, but chances are, you already have most of the spices at home. Here’s what you’ll need: Italian Seasoning Garlic Salt Celery Salt
+White Pepper Black Pepper Paprika Ginger Mustard Powder', 1);
+
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) values ( 2, 'fishy fish', '/Users/kaheilai/Desktop/uncycle1.m4v', 2, 500, 'Sprinkle catfish with salt and pepper. Whisk the eggs, mustard and milk in a shallow bowl. Place flour and pretzels in separate shallow bowls. Coat fillets with flour, then dip in egg mixture and coat with pretzels. Heat 1/4 in. oil to 375° in an electric skillet. Fry fillets, a few at a time, until fish flakes easily with a fork, 3-4 minutes on each side. Drain on paper towels. Serve with lemon slices if desired.', 2);
+
+
 

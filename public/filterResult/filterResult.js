@@ -1,1 +1,3 @@
-const socket = io.connect();
+// const socket = io.connect();
+
+function loadRecipes() {}

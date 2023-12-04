@@ -4,7 +4,6 @@ create table users(
     id serial primary key,
     password varchar(255) not null,
     email varchar(255) unique not null,
-    isVegetarian boolean,
     profile_pic varchar(255),
     user_name varchar(255) not null
 );
@@ -45,7 +44,7 @@ create table user_cuisine(
 
 create table recipe(
     id serial primary key,
-    users_id integer references users(id),
+    user_id integer references users(id),
     title integer not null,
     video varchar(255),
     cuisine_id integer references cuisine(id),

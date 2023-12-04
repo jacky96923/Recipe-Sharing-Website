@@ -22,3 +22,4 @@ insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_i
 
 
 
+insert into recipe_image (0, image) VALUES ('seafood'),('lemon');

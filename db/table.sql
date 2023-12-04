@@ -44,7 +44,7 @@ create table user_cuisine(
 
 create table recipe(
     id serial primary key,
-    users_id integer references users(id),
+    user_id integer references users(id),
     title integer not null,
     video varchar(255),
     cuisine_id integer references cuisine(id),

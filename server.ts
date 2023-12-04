@@ -3,7 +3,7 @@ import { env } from './env'
 import expressSession from 'express-session'
 import path from 'path'
 import dayjs from 'dayjs'
-
+import { recipeRouter } from './recipes'
 
 const app = express();
 
@@ -42,8 +42,19 @@ app.use((req,res,next)=>{
     next()
 })
 
+//add recipe page
+app.use(recipeRouter)
+
+
 //page load setting
 app.use(express.static('public'))
+
+app.get('/recipes', (req, res)=>{
+    let file= path.resolve('public/recipes.html')
+    res.sendFile(file)
+    console.log('recipe content')
+})
+
 
 //page port setting
 app.listen(env.PORT, ()=>{

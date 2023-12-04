@@ -11,3 +11,4 @@ insert into diet (name) VALUES (not);
 
 insert into allergies (name) VALUES ('seafood'),('lemon');
 
+insert into recipe_image (0, image) VALUES ('seafood'),('lemon');

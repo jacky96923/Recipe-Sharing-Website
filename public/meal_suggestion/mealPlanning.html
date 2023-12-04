@@ -13,12 +13,40 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+    <script src='fullcalendar/dist/index.global.js'></script>
+    <script>
+
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+        height: 550,
+        dateClick: function(info) {
+        console.log(info.dateStr)
+  //call backend 
+  }
+        });
+        calendar.render();
+      });
+
+    </script>
+
+
+
+<script>
+var calendar = new FullCalendar.Calendar(calendarEl, {
+  // no plugin configuration required!
+});
+</script>
+
   </head>
   <h1>Meal Planning</h1>
   <h2>(Calendar)</h2>
   <h3>Today</h3>
   <body>
     <div id='mealPlanning'></div>
+    <div class='calendar' id ='calendar' style=width:80%; display: inline-block ></div>
     <div class="dayMeal"  id="morning">
       早上
         <button>

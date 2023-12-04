@@ -42,8 +42,13 @@ app.use((req,res,next)=>{
     next()
 })
 
+//add recipe page
+app.use(mealPlanningRouter) 
+
 //page load setting
 app.use(express.static('public'))
+
+
 
 //page port setting
 app.listen(env.PORT, ()=>{

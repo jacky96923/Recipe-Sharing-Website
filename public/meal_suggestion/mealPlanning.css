@@ -10,6 +10,12 @@ h2 {
     justify-content: center;
 }
 
+.calendar
+{ 
+    display: flex;
+    justify-content: center;
+}
+
 
 h3 {
     display: flex;

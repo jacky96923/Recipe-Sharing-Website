@@ -59,19 +59,51 @@
     margin:0;
 }
 
+#profile_pic{
+    border-style: solid;
+    border-width: 1px;
+    height: 5rem;
+    width: 5rem;
+}
+
 #user_info{
     border-style: solid;
     border-width: 1px;
     height: 5rem;
-    width: 45rem;
+    width: 40rem;
+}
+
+#ingredientsContainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    border-style: solid;
+    border-width: 1px;
+    height: 15rem;
+    width: 15rem;
 }
 
 #ingredients{
     border-style: solid;
     border-width: 1px;
-    height: 15rem;
-    width: 20rem;
+    height: 2rem;
+    width: 5rem;
 }
+
+#amount{
+    border-style: solid;
+    border-width: 1px;
+    height: 2rem;
+    width: 2rem;
+}
+
+#unit{
+    border-style: solid;
+    border-width: 1px;
+    height: 2rem;
+    width: 2rem;
+}
+
 
 #main_content{
     border-style: solid;

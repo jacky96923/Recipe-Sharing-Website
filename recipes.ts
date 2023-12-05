@@ -15,10 +15,10 @@ recipeRouter.get('/recipe/:id', async (req, res) => {
         join recipe_allergies on recipe_allergies.recipe_id  = recipe.id
         join users on recipe.user_id = users.id
         where recipe.id = $1`,[id])
-        let data = result.rows
-        console.log(data);
+        let recipes = result.rows
+        console.log(recipes);
         
-        res.json(data)
+        res.json(recipes)
     } catch (error) {
         
     }

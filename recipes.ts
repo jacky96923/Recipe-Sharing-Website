@@ -1,6 +1,6 @@
 import { Router } from 'express'
 
-import { client } from './server';
+import { client } from "./database"
 
 
 export let recipeRouter = Router()

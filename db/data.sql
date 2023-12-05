@@ -15,7 +15,10 @@ insert into diet (name) VALUES ('vegetarian'),('meat_lover'),('pescetarian'),('k
 
 ALTER TABLE recipe ALTER TITLE TYPE text;
 
-insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (2, '星米', null, 2, 300, '落獲上獲', 3);
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (1, 'fake chicken', 'video.mp4', 1, 800, 'When creating this recipe, I did a bunch of research on KFC’s famous seasoning blend. While their method is technically “top secret,” I did find some base recipes for the blend that I was able to tweak and make my own. There are quite a few components to the seasoning blend, but chances are, you already have most of the spices at home. Here’s what you’ll need: Italian Seasoning Garlic Salt Celery Salt', 1);
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (2, 'fishy fish', 'fish.mp4', 2, 500, 'Sprinkle catfish with salt and pepper. Whisk the eggs, mustard and milk in a shallow bowl. Place flour and pretzels in separate shallow bowls. Coat fillets with flour, then dip in egg mixture and coat with pretzels. Heat 1/4 in. oil to 375° in an electric skillet. Fry fillets, a few at a time, until fish flakes easily with a fork, 3-4 minutes on each side. Drain on paper towels. Serve with lemon slices if desired.', 2);
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (3, '星米', null, 3, 300, '落獲上獲', 3);
+
 
 
 insert into recipe_image (recipe_id, image, is_cover) values ( 1, 'chicken.jpg', true);

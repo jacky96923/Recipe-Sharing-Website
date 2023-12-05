@@ -13,7 +13,7 @@
     justify-content: center;
     border-style: solid;
     border-width: 1px;
-    height: 60rem;
+    height: auto;
     width: 50rem;
 }
 
@@ -63,5 +63,19 @@
     border-style: solid;
     border-width: 1px;
     height: 5rem;
+    width: 45rem;
+}
+
+#ingredients{
+    border-style: solid;
+    border-width: 1px;
+    height: 15rem;
+    width: 20rem;
+}
+
+#main_content{
+    border-style: solid;
+    border-width: 1px;
+    height: 50rem;
     width: 45rem;
 }

@@ -83,6 +83,14 @@
     width: 15rem;
 }
 
+#ingredients_inner{
+    display:flex;
+    border-style: solid;
+    border-width: 1px;
+    height: 2rem;
+    width: 15rem;
+}
+
 #ingredients{
     border-style: solid;
     border-width: 1px;

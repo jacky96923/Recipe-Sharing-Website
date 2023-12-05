@@ -48,8 +48,8 @@ function renderData(recipes) {
     ingredientsContainer.appendChild(node);
   }
 
-  // let main_contentElement = document.querySelector("#main_content");
-  // main_contentElement.textContent = recipes[0].content;
+  let main_contentElement = document.querySelector("#main_content");
+  main_contentElement.textContent = recipes[0].content;
 }
 
 loadRecipes();

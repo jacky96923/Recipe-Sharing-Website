@@ -19,12 +19,12 @@ document.addEventListener("DOMContentLoaded", function () {
 window.selectMealType = selectMealType;
 
 function selectMealType(mealType) {
-  let el = document.querySelector(".fc-day.selected"); //query select calendar 嗰一日
-  if (!el) {
+  let element = document.querySelector(".fc-day.selected"); //query select calendar 嗰一日
+  if (!element) {
     alert("please select a date first");
     return;
   }
-  let date = el.dataset.date;
+  let date = element.dataset.date;
   console.log({ mealType, date });
   location.href =
     "/filterResult/filterResult.html?" +

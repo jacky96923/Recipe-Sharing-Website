@@ -12,29 +12,31 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
-
   </head>
   <body>
     <h1>Filter Results</h1>
 
     <div class="pickResult">
-        <button>
-          選擇
-        </button>
-
+      <div id="recipeList">
+        <div class="recipe">
+          <img
+            src="https://www.w3schools.com/html/pic_trulli.jpg"
+            alt="Italian Trulli"
+          />
+          <button>選擇</button>
+        </div>
+      </div>
+    </div>
 
     <h1>Suggestions</h1>
 
-        <div class="suggestionResult">
-            <button>
-              選擇
-            </button>
+    <div class="suggestionResult">
+      <button>選擇</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="/socket.io/socket.is.js"></script>
+    <script src="filterResult.js"></script>
   </body>
-
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="/socket.io/socket.is.js"></script>
-  <script src="filterResult.js"></script>
 </html>

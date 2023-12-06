@@ -53,29 +53,48 @@
                         </div>
                         <div id="form_recipe_details">
                             <div class="form_diet checkbox">
-                                Diet: 
-                                <input type="checkbox" id="vegetarian" name="vegetarian" checked /> <label for="vegetarian">Vegetarian</label>
-                                <input type="checkbox" id="meat_lover" name="meat_lover" checked /> <label for="meat_lover">Meat Lover</label>
-                                <input type="checkbox" id="pescetarian" name="pescetarian" checked /> <label for="pic">Pescetarian</label>
-                                <input type="checkbox" id="ketogenic" name="ketogenic" checked /> <label for="ketogenic">Ketogenic</label>
+                            <div class="checkbox-container">
+                                <div>Diet: </div> 
+                                <div id="diet"> 
+                                 <!-- <input type="checkbox" id="vegetarian" name="vegetarian" checked /> <label for="vegetarian">Vegetarian</label>
+                                 <input type="checkbox" id="meat_lover" name="meat_lover" checked /> <label for="meat_lover">Meat Lover</label>
+                                 <input type="checkbox" id="pescetarian" name="pescetarian" checked /> <label for="pic">Pescetarian</label>
+                                 <input type="checkbox" id="ketogenic" name="ketogenic" checked /> <label for="ketogenic">Ketogenic</label></div>
+                                 -->
+                                </div>
                             </div>
-                            <div class="form_allergies checkbox">
-                                Allergies: 
-                                <input type="checkbox" id="peanut" name="peanut" checked /> <label for="peanut">Peanut</label>
-                                <input type="checkbox" id="dairy" name="dairy" checked /> <label for="dairy">Dairy</label>
-                                <input type="checkbox" id="seafood" name="seafood" checked /> <label for="seafood">Seafood</label>
-                                <input type="checkbox" id="gluten" name="gluten" checked /> <label for="gluten">Gluten</label>
                             </div>
-                            <div class="form_cuisines checkbox">
-                                Cuisines: 
-                                <input type="checkbox" id="chinese" name="chinese" checked /> <label for="chinese">Chinese</label>
-                                <input type="checkbox" id="north_american" name="north_american" checked /> <label for="north_american">North American</label>
-                                <input type="checkbox" id="thai" name="thai" checked /> <label for="thai">Thai</label>
-                                <input type="checkbox" id="vietnamese" name="vietnamese" checked /> <label for="vietnamese">Vietnamese</label>
-                                <input type="checkbox" id="italian" name="italian" checked /> <label for="italian">Italian</label>
-                                <input type="checkbox" id="french" name="french" checked /> <label for="french">French</label>
 
+                            <div class="form_allergies checkbox">
+                                <div class="checkbox-container">
+                                    <div>Allergies:</div>
+                                    <div id="allergies">
+                                        <!-- <input type="checkbox" id="peanut" name="peanut" checked /> <label for="peanut">Peanut</label>
+                                        <input type="checkbox" id="dairy" name="dairy" checked /> <label for="dairy">Dairy</label>
+                                        <input type="checkbox" id="seafood" name="seafood" checked /> <label for="seafood">Seafood</label>
+                                        <input type="checkbox" id="gluten" name="gluten" checked /> <label for="gluten">Gluten</label></div> -->
+                                    
+                                </div>
+                                </div>
                             </div>
+
+                            <div class="form_cuisines checkbox">
+                                <div class="checkbox-container">
+                                    <div>Cuisines: </div>
+                                    <div id="cuisines">
+                                        <!-- <input type="checkbox" id="chinese" name="chinese" checked /> <label for="chinese">Chinese</label>
+                                        <input type="checkbox" id="north_american" name="north_american" checked /> <label for="north_american">North American</label>
+                                        <input type="checkbox" id="thai" name="thai" checked /> <label for="thai">Thai</label>
+                                        <input type="checkbox" id="vietnamese" name="vietnamese" checked /> <label for="vietnamese">Vietnamese</label>
+                                        <input type="checkbox" id="italian" name="italian" checked /> <label for="italian">Italian</label>
+                                        <input type="checkbox" id="french" name="french" checked /> <label for="french">French</label></div> -->
+                                    
+
+                                    </div>
+                                </div>
+                            </div>
+                                
+
                             <div class="form_calories checkbox">
                                 <label for="calories">Estimate Calories:</label>
                                 <input type="calories" name="calories">
@@ -111,6 +130,7 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"></script>
+      <script type="module" src="../../common.js"></script>
     <script src="/post_recipes/post_recipes.js"></script>
 </body>
 </html>

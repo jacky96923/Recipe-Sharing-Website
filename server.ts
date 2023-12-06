@@ -4,6 +4,7 @@ import path from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
 import { env } from "./env";
+import { post_recipeRouter } from "./post_recipes"
 
 
 const app = express();
@@ -57,6 +58,7 @@ app.use((req, res, next) => {
 
 //add recipe page
 app.use(recipeRouter);
+app.use(post_recipeRouter);
 
 //page load setting
 app.use(express.static("public"));

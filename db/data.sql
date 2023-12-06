@@ -42,3 +42,13 @@ insert into recipe_allergies ()
 insert into recipe_image (recipe_id, image, is_cover) VALUES (1, '/Users/Man/Downloads/lovepik-boys-head-png-image_400233604_wh1200.png', true);
 
 
+insert into allergies (name) values ('Seafood');
+insert into allergies (name) values ('Gluten');
+
+insert into diet (name) values ('Meat Lover');
+insert into diet (name) values ('Ketogenic');
+
+insert into cuisine (name) values ('North American');
+insert into cuisine (name) values ('Vietnamese');
+insert into cuisine (name) values ('Italian');
+insert into cuisine (name) values ('French');

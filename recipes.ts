@@ -20,5 +20,7 @@ recipeRouter.get("/recipe/:id", async (req, res) => {
     console.log(recipes);
 
     res.json(recipes);
-  } catch (error) {}
+  } catch (error) {
+    console.log(`Cannot get recipes from postgreSQL`);
+  }
 });

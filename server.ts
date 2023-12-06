@@ -61,6 +61,7 @@ app.use(recipeRouter);
 app.use(post_recipeRouter);
 
 //page load setting
+app.use("/upload", express.static("upload"));
 app.use(express.static("public"));
 
 //page port setting

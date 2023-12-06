@@ -15,9 +15,15 @@ insert into diet (name) VALUES ('vegetarian'),('meat_lover'),('pescetarian'),('k
 ALTER TABLE recipe ALTER TITLE TYPE text;
 
 insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (2, '星米', null, 2, 300, '落獲上獲', 3);
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (3, '牛河', null, 2, 300, '河先牛後', 3);
+insert into recipe (user_id, title, video, cuisine_id, calories, content, diet_id) VALUES (3, '西多', null, 3, 300, '落包炸爆', 3);
+
 
 insert into recipe_image (recipe_id, image, is_cover) values ( 1, 'chicken.jpg', true);
-insert into recipe_image (recipe_id, image, is_cover) values ( 2, 'fish.jpg', true);
+insert into recipe_image (recipe_id, image, is_cover) values ( 1, '/Users/Man/Downloads/chickenleg.jpg"', true);
+insert into recipe_image (recipe_id, image, is_cover) values ( 2, '"C:\Users\Man\Downloads\fishdishes.jpg"', true);
+insert into recipe_image (recipe_id, image, is_cover) values ( 3, '"C:\Users\Man\Downloads\pork.jpg"', true);
+
 
 insert into recipe_ingredient (recipe_id, ingredient_name, amount, unit) values ( 1, 'chicken', 1, 'kg'); 
 insert into recipe_ingredient (recipe_id, ingredient_name, amount, unit) values ( 1, 'flour', 0.5, 'kg'); 
@@ -34,6 +40,7 @@ update allergies set id = 2 where id = 4;
 
 insert into recipe_allergies ()
 insert into recipe_image (recipe_id, image, is_cover) VALUES (1, '/Users/Man/Downloads/lovepik-boys-head-png-image_400233604_wh1200.png', true);
+
 
 insert into allergies (name) values ('Seafood');
 insert into allergies (name) values ('Gluten');

@@ -4,7 +4,7 @@ import path from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
 import { env } from "./env";
-
+import { filterResultRouter } from "./filterResult";
 
 const app = express();
 
@@ -57,8 +57,10 @@ app.use((req, res, next) => {
 
 //add recipe page
 app.use(recipeRouter);
+app.use(filterResultRouter);
 
 //page load setting
+app.use("/upload", express.static("upload"));
 app.use(express.static("public"));
 
 //page port setting

@@ -5,27 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meal Planning</title>
-    <link href="public/filterResult.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link href="filterResult.css" rel="stylesheet" />
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
+    crossorigin="anonymous"
+  />
     <meta charset="utf-8" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+    <style>
+
+    </style>
   </head>
   <body>
-    <h1>Filter Results</h1>
+    <h1>Favourite Choice</h1>
 
     <div class="pickResult">
-      <div id="recipeList">
+      <div id="favourResultList">
         <div class="recipe">
-          <img
-            src="https://www.w3schools.com/html/pic_trulli.jpg"
-            alt="Italian Trulli"
-          />
-          <button>選擇</button>
+          <img src="/upload/chickenleg.jpg" />
+          <div id="title">chickenleg</div>
+          </div>
+          <!-- <div class="recipe">
+            <img src="/upload/chickenleg.jpg" />
+            <div>chickenleg</div>
+            </div> -->
+          
         </div>
       </div>
+      <button>選擇</button>
     </div>
 
     <h1>Suggestions</h1>
@@ -34,9 +46,13 @@
       <button>選擇</button>
     </div>
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="/socket.io/socket.is.js"></script>
+ 
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+    crossorigin="anonymous"
+  ></script>
     <script src="filterResult.js"></script>
+    
   </body>
 </html>

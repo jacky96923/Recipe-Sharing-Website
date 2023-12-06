@@ -125,6 +125,25 @@ alter table recipe alter column title type text;
 
 
 
+create table preference(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table user_preference(
+    id serial primary key,
+    user_id integer references users(id),
+    preference_id integer references preference(id)
+);
+
+create table recipe_preference(
+    id serial primary key,
+    recipe_id integer references recipe(id),
+    preference_id integer references preference(id)
+);
+
+
+
 
 
 

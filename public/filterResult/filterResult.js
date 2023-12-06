@@ -1,8 +1,6 @@
 // const socket = io.connect();
 
-{
-}
-
+let loadFilter;
 async function loadFilterResults() {
   let res = await fetch("/results");
   let json = await res.json();

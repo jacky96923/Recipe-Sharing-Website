@@ -164,6 +164,27 @@ create table recipe_exclude(
     exclude_id integer references exclude(id)
 );
 
+drop table recipe_exclude;
+drop table user_exclude;
+drop table exclude;
+
+create table avoid(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table user_avoid(
+    id serial primary key,
+    user_id integer references users(id),
+    avoid_id integer references avoid(id)
+);
+
+create table recipe_exclude(
+    id serial primary key,
+    recipe_id integer references recipe(id),
+    avoid_id integer references avoid(id)
+);
+
 
 
 

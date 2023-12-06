@@ -52,3 +52,10 @@ insert into cuisine (name) values ('North American');
 insert into cuisine (name) values ('Vietnamese');
 insert into cuisine (name) values ('Italian');
 insert into cuisine (name) values ('French');
+
+insert into exclude (name) values ('Alcohol');
+insert into exclude (name) values ('Pork');
+insert into exclude (name) values ('Beef');
+insert into exclude (name) values ('Seafood');
+insert into exclude (name) values ('Starch');
+insert into exclude (name) values ('Spicy');

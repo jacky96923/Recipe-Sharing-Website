@@ -142,6 +142,28 @@ create table recipe_preference(
     preference_id integer references preference(id)
 );
 
+drop table recipe_preference;
+drop table user_preference;
+drop table preference;
+
+
+create table exclude(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table user_exclude(
+    id serial primary key,
+    user_id integer references users(id),
+    exclude_id integer references exclude(id)
+);
+
+create table recipe_exclude(
+    id serial primary key,
+    recipe_id integer references recipe(id),
+    exclude_id integer references exclude(id)
+);
+
 
 
 

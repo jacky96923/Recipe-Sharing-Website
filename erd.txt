@@ -161,24 +161,24 @@ allergies_id integer FK >0- allergies.id
 
 
 
-preference
+exclude
 -----------
 id integer PK
 name var(255)
 
 
-user_preference
+user_exclude
 -----------
 id integer PK
 user_id integer FK >0- users.id
-preference_id integer FK >0- preference.id
+exclude_id integer FK >0- exclude.id
 
 
-recipe_preference
+recipe_exclude
 -----------
 id integer PK
 recipe_id integer FK >0- recipe.id
-preference_id integer FK >0- preference.id
+exclude_id integer FK >0- exclude.id
 
 
 # zoom: 0.810

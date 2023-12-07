@@ -13,6 +13,11 @@ export async function loadAttributes() {
         "#allergies"
       ).innerHTML += ` <input type="checkbox" id=${allergies.allergies} name=${allergies.allergies} checked /> <label for=${allergies.allergies}>${allergies.allergies}</label>`;
     }
+    for (let avoid of attributes.avoid) {
+      document.querySelector(
+        "#avoid"
+      ).innerHTML += ` <input type="checkbox" id=${avoid.avoid} name=${avoid.avoid} checked /> <label for=${avoid.avoid}>${avoid.avoid}</label>`;
+    }
     for (let cuisine of attributes.cuisine) {
       document.querySelector(
         "#cuisines"
@@ -22,5 +27,3 @@ export async function loadAttributes() {
     console.error("error loading attributes:", error);
   }
 }
-
-// loadAttributes();

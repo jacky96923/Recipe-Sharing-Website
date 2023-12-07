@@ -43,7 +43,7 @@
             </div>
             <div class="col-7">
                 <div id="form_container">
-                    <div id="form">
+                    <div id="form" action="/submit" method="POST">
                         <div id="form_title">
                             Submitting Recipe!
                         </div>
@@ -78,10 +78,10 @@
                                 </div>
                             </div>
 
-                            <div class="form_exclude checkbox">
+                            <div class="form_avoid checkbox">
                                 <div class="checkbox-container">
                                     <div>Your Recipe Contain:</div> 
-                                    <div id="exclude"> 
+                                    <div id="avoid"> 
                                      <!-- <input type="checkbox" id="vegetarian" name="vegetarian" checked /> <label for="vegetarian">Vegetarian</label>
                                      <input type="checkbox" id="meat_lover" name="meat_lover" checked /> <label for="meat_lover">Meat Lover</label>
                                      <input type="checkbox" id="pescetarian" name="pescetarian" checked /> <label for="pic">Pescetarian</label>
@@ -113,7 +113,7 @@
                                 <input type="calories" name="calories">
                             </div>
                             <div class="upload_image">
-                                <input type="submit" value="Submit">
+                                <input type="file" value="Submit Photo">
                             </div>
                         </div>
                     <div id="editing_tools">
@@ -125,7 +125,9 @@
                         </textarea>
 
                     </div>
-
+                    <div>
+                       <input type="submit" value="Submit Recipe"/> 
+                    </div>
 
                     </div>
                 </div>

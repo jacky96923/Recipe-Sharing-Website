@@ -3,6 +3,7 @@ import { client } from "./database"
 
 export let post_recipeRouter = Router()
 
+
 post_recipeRouter.get('/attributes', async (req, res) => {
     try {
         let result1 = await client.query(`select id, name as Diet from diet;`)
@@ -26,3 +27,7 @@ post_recipeRouter.get('/attributes', async (req, res) => {
     }
 })
 
+post_recipeRouter.post('/submit', (req, res) => {
+    console.log(req.body)
+    res.redirect('/submit_success.html')
+})

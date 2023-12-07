@@ -125,6 +125,68 @@ alter table recipe alter column title type text;
 
 
 
+create table preference(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table user_preference(
+    id serial primary key,
+    user_id integer references users(id),
+    preference_id integer references preference(id)
+);
+
+create table recipe_preference(
+    id serial primary key,
+    recipe_id integer references recipe(id),
+    preference_id integer references preference(id)
+);
+
+drop table recipe_preference;
+drop table user_preference;
+drop table preference;
+
+
+create table exclude(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table user_exclude(
+    id serial primary key,
+    user_id integer references users(id),
+    exclude_id integer references exclude(id)
+);
+
+create table recipe_exclude(
+    id serial primary key,
+    recipe_id integer references recipe(id),
+    exclude_id integer references exclude(id)
+);
+
+drop table recipe_exclude;
+drop table user_exclude;
+drop table exclude;
+
+create table avoid(
+    id serial primary key,
+    name varchar(255) not null
+);
+
+create table user_avoid(
+    id serial primary key,
+    user_id integer references users(id),
+    avoid_id integer references avoid(id)
+);
+
+create table recipe_exclude(
+    id serial primary key,
+    recipe_id integer references recipe(id),
+    avoid_id integer references avoid(id)
+);
+
+
+
 
 
 

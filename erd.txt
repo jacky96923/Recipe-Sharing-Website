@@ -135,6 +135,7 @@ recipe_id integer FK >0- recipe.id
 
 meal_schedule
 -----------
+id integer PK
 user_id integer FK >0- users.id
 date date
 breakfast_recipe_id integer FK >0- recipe.id
@@ -159,8 +160,29 @@ recipe_id integer FK >0- recipe.id
 allergies_id integer FK >0- allergies.id
 
 
+
+exclude
+-----------
+id integer PK
+name var(255)
+
+
+user_exclude
+-----------
+id integer PK
+user_id integer FK >0- users.id
+exclude_id integer FK >0- exclude.id
+
+
+recipe_exclude
+-----------
+id integer PK
+recipe_id integer FK >0- recipe.id
+exclude_id integer FK >0- exclude.id
+
+
 # zoom: 0.810
-# view: (-1, 1)
+# view: (145, 44)
 # text-bg: #6495ed
 # text-color: #000000
 # diagram-bg: #f5f5f5
@@ -168,18 +190,21 @@ allergies_id integer FK >0- allergies.id
 # table-bg: #ffffff
 # table-text: #000000
 # recipe (1041, 637)
-# recipe_image (944, 19)
-# recipe_ingredient (1412, 795)
-# user_like (1413, 329)
-# user_diet (1429, 450)
-# recipe_like (505, 435)
-# recipe_view (1469, 1035)
-# meal_schedule (1409, 607)
+# recipe_image (574, 496)
+# recipe_ingredient (1460, 937)
+# user_like (1116, 345)
+# user_diet (1424, 339)
+# recipe_like (479, 219)
+# recipe_view (1447, 566)
+# meal_schedule (1429, 723)
 # user_allergies (1403, -7)
 # recipe_allergies (710, 698)
-# users (1670, 167)
-# coffee_transaction (1693, 532)
-# cuisine (1088, 413)
+# users (1683, 210)
+# coffee_transaction (1990, 521)
+# cuisine (1106, 510)
 # diet (1078, 976)
-# allergies (1026, 167)
-# user_cuisine (1389, 129)
+# allergies (869, 90)
+# user_cuisine (1315, 154)
+# preference (1118, 171)
+# user_preference (1099, -25)
+# recipe_preference (773, 307)

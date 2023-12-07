@@ -53,16 +53,25 @@
     width: 50rem;
 }
 
-.checkbox{
+/* .checkbox{
     border-style: solid;
     border-width: 1px;
-    height: 3rem;
+    height: auto;
+    width: 34rem;
+} */
+
+.checkbox-container{
+    display: flex;
+    border-style: solid;
+    border-width: 1px;
+    height: auto;
     width: 34rem;
 }
 
 .upload_image{
     position:relative;
-    bottom: 9rem;
+    bottom: 9.5rem;
+    left: 12rem;
     border-style: solid;
     border-width: 1px;
     height: 15rem;

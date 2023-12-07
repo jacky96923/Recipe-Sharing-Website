@@ -2,4 +2,5 @@ node_modules
 .env
 wsp_project.sql
 package-lock.json
+upload/
 .vscode

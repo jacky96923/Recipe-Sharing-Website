@@ -68,7 +68,7 @@
     width: 34rem;
 }
 
-.upload_image{
+.upload_cover{
     position:relative;
     bottom: 9.5rem;
     left: 12rem;
@@ -78,11 +78,34 @@
     width: 15rem;
 }
 
-#editing_tools{
+#image_upload{
+    display:flex;
+    flex-wrap:wrap;
     border-style: solid;
     border-width: 1px;
-    height: 3rem;
+    height: auto;
     width: 50rem;
+}
+
+.upload_image{
+    border-style: solid;
+    border-width: 1px;
+    height: 11rem;
+    width: 12.4rem;
+}
+
+.upload_video{
+    border-style: solid;
+    border-width: 1px;
+    height: 11rem;
+    width: 12.4rem;
+}
+
+#submit_ingredients{
+    border-style: solid;
+    border-width: 1px;
+    height: auto;
+    width: auto;
 }
 
 #enter_mainContent{
@@ -95,4 +118,41 @@
 #content_input{
     height: 50rem;
     width: 50rem;
+}
+
+#add_ingredient{
+    border-style: solid;
+    border-width: 1px;
+    height: auto;
+    width: auto;
+    margin-left: 1rem;
+}
+
+#gen_ingredient{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-width: 1px;
+    height: 100%;
+    width: 100%;
+}
+
+#form_ingredients{
+    display:flex;
+    flex-direction: row;
+    border-style: solid;
+    border-width: 1px;
+    height: 100%;
+    width: 50rem;
+}
+
+#additional_ingredients{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-width: 1px;
+    height: 100%;
+    width: 100%;
 }

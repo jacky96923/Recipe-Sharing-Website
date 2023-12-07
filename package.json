@@ -30,6 +30,7 @@
     "express-session": "^1.17.3",
     "formidable": "^2.1.2",
     "fullcalendar": "^6.1.10",
+    "jquery": "^3.7.1",
     "jsonfile": "^6.1.0",
     "pg": "^8.11.3",
     "populate-env": "^2.0.0",

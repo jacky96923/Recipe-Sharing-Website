@@ -4,3 +4,4 @@ wsp_project.sql
 package-lock.json
 upload/
 uploads
+.vscode

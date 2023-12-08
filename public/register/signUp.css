@@ -157,3 +157,15 @@ i span {
 .signup a:hover {
   text-decoration: underline;
 }
+.return {
+  font-size: 15px;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+.return a {
+  color: #3498db;
+  text-decoration: none;
+}
+.return a:hover {
+  text-decoration: underline;
+}

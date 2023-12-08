@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/register/signUp.css" />
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <div class="bg-img">
+      <div class="content">
+        <header>Member Sign Up</header>
+        <form
+          id="signUp"
+          method="post"
+          action="/signUp"
+          onsubmit="signUp(event)"
+        >
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" name="username" placeholder="Username" />
+          </div>
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" name="password" placeholder="Password" />
+          </div>
+          <div class="field space">
+            <input type="submit" value="submit" />
+          </div>
+          <p id="errorMessage" style="color: red"></p>
+        </form>
+      </div>
+    </div>
+    <script src="/register/signUp.js"></script>
+  </body>
+</html>

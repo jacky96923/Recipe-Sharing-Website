@@ -59,3 +59,5 @@ insert into avoid (name) values ('Beef');
 insert into avoid (name) values ('Seafood');
 insert into avoid (name) values ('Starch');
 insert into avoid (name) values ('Spicy');
+
+update allergies set name = 'Dairy' where id = 6;

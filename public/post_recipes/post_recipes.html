@@ -118,38 +118,37 @@
                         </div>
                     <div id="image_upload">
                         <div class="upload_image 1">
-                            <input name="image1" type="file" value="Submit Photo">Submit First Picture.
+                            <input name="image1" multiple type="file" value="Submit Photo">Submit Picture.
                         </div>
-                        <div class="upload_image 2">
+                        <!-- <div class="upload_image 2">
                             <input name="image2" type="file" value="Submit Photo">Submit Second Picture.
                         </div>
                         <div class="upload_image 3">
                             <input name="image3" type="file" value="Submit Photo">Submit Third Picture.
-                        </div>
-                        <div class="upload_video">
+                        </div> -->
+                        <!-- <div class="upload_video">
                             <input name="video" type="file" value="Submit Photo">Submit Video.
-                        </div>
+                        </div> -->
                         
 
                     </div>
                     <div id="submit_ingredients">
-                        <div id="form_ingredients">
-                            
+                        <div id="form_ingredients">    
                             Ingredients: 
                             <br>
-                            <div id="add_ingredient">
-                                <div>
-                                <div>Name: </div><input type="name" name="name">
-                                <div>Amount: </div><input type="Amount" name="Amount">
-                                <div>Unit: </div><input type="Unit" name="Unit"> 
+                            <div id="ingredient_list">
+                                <div class="ingredient">
+                                    <div>
+                                    <div>Name: </div><input type="name" name="name">
+                                    <div>Amount: </div><input type="amount" name="amount">
+                                    <div>Unit: </div><input type="unit" name="unit"> 
+                                    </div>
+                                    <button class="delete_btn" type="button">Delete</button>
                                 </div>
-
                             </div>
-
                         </div>
-
                         <div id="gen_ingredient">
-                            <button id="add_ingredient_button">Add Ingredient</button>
+                            <button id="add_ingredient_button" onclick="addIngredient()" type="button">Add Ingredient</button>
                             <div id="additional_ingredients"></div> 
                         </div>
 
@@ -163,6 +162,9 @@
                     <div>
                        <input type="submit" value="Submit Recipe"/> 
                     </div>
+                    <div>
+                        <input type="reset" value="Clear All"/>
+                      </div>
 
                 </form>
                 </div>
@@ -180,7 +182,9 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
       crossorigin="anonymous"></script>
+        
       <script type="module" src="../../common.js"></script>
+      <script src="/loadAttributes.js"></script>
     <script src="/post_recipes/post_recipes.js"></script>
 </body>
 </html>

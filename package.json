@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "bootstrap-icons": "^1.11.2",
+    "cast.ts": "^1.9.0",
     "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "env": "^0.0.2",

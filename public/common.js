@@ -1,5 +1,4 @@
-import { loadAttributes } from "./loadAttributes.js";
-import "/post_recipes/post_recipes.js";
+// import "/post_recipes/post_recipes.js";
 
 // Instructions
 // import { loadAttributes } from "../loadAttributes.js";

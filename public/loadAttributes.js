@@ -11,12 +11,12 @@ async function loadAttributes() {
     for (let allergies of attributes.allergies) {
       document.querySelector(
         "#allergies"
-      ).innerHTML += ` <input type="checkbox" data-group="group2" id=${allergies.allergies} name="allergies" value=${allergies.id} checked /> <label for=${allergies.allergies}>${allergies.allergies}</label>`;
+      ).innerHTML += ` <input type="checkbox" data-group="group2" id=${allergies.allergies} name="allergies" value=${allergies.id}  /> <label for=${allergies.allergies}>${allergies.allergies}</label>`;
     }
     for (let avoid of attributes.avoid) {
       document.querySelector(
         "#avoid"
-      ).innerHTML += ` <input type="checkbox" data-group="group3" id=${avoid.avoid} name="avoid" value=${avoid.id} checked /> <label for=${avoid.avoid}>${avoid.avoid}</label>`;
+      ).innerHTML += ` <input type="checkbox" data-group="group3" id=${avoid.avoid} name="avoid" value=${avoid.id}  /> <label for=${avoid.avoid}>${avoid.avoid}</label>`;
     }
     for (let cuisine of attributes.cuisine) {
       document.querySelector(

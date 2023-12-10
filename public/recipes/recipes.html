@@ -23,7 +23,8 @@
             <a class="nav-link Login" href="">Login/sign-up</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link Post_New_Recipes" href="http://localhost:8200/post_recipes/post_recipes.html">Post New Recipes</a>
+                <a class="li-modal" href="http://localhost:8200/post_recipes/post_recipes.html">Post New Recipes</a>
+            <!-- <a class="nav-link Post_New_Recipes" href="http://localhost:8200/post_recipes/post_recipes.html">Post New Recipes</a> -->
             </li>
             <li class="nav-item">
             <a class="nav-link Your_Recipes" aria-disabled="true">Your Recipes</a>
@@ -102,6 +103,31 @@
 
             </template>
 
+            <!-- Modal -->
+<div id="theModal" class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-content">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Submit!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="theModal" class="modal fade text-center">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      </div>
+    </div>
+  </div> -->
+
 
         </div>
         <div class="col-2">
@@ -118,7 +144,7 @@
 
 
 
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"

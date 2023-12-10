@@ -61,3 +61,14 @@ insert into avoid (name) values ('Starch');
 insert into avoid (name) values ('Spicy');
 
 update allergies set name = 'Dairy' where id = 6;
+
+
+select distinct recipe.id, user_name, title as recipe_title, calories, content, diet.name as diet, cuisine.name as cuisine, image, is_cover, ingredient_name, amount, unit, profile_pic, allergies from recipe
+		join users on recipe.user_id = users.id
+		join diet on recipe.diet_id = diet.id
+		join cuisine on recipe.cuisine_id = cuisine.id
+		join recipe_image on recipe_image.recipe_id = recipe.id
+        join recipe_ingredient on recipe.id = recipe_ingredient.recipe_id
+        join recipe_allergies on recipe.id = recipe_allergies.recipe_id
+        join allergies on allergies.id = recipe_allergies.allergies_id
+        where recipe.id = 1

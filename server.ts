@@ -6,11 +6,11 @@ import { env } from "./env";
 import { post_recipeRouter } from "./post_recipes";
 import userRouter from "./user";
 import { sessionMiddleware } from "./session";
+import { user_profileRouter } from "./userprofile";
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true })); //for form submissions
-
 
 //counter for entering the page // from the file env
 app.use(sessionMiddleware);
@@ -60,9 +60,10 @@ app.use(userRouter);
 //add recipe page
 app.use(recipeRouter);
 app.use(post_recipeRouter);
+app.use(user_profileRouter);
 
 //page load setting
-app.use("/upload", express.static("upload"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
 
 //page port setting

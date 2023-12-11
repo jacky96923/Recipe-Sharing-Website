@@ -185,6 +185,15 @@ create table recipe_exclude(
     avoid_id integer references avoid(id)
 );
 
+create type period_type as enum('breakfast','lunch','dinner');
+
+alter table meal_schedule ADD COLUMN period period_type;
+
+alter table meal_schedule RENAME COLUMN breakfast_recipe_id to recipe_id;
+
+alter table meal_schedule drop column lunch_recipe_id;
+
+alter table meal_schedule drop column dinner_recipe_id;
 alter table recipe drop column video;
 
 

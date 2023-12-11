@@ -23,7 +23,6 @@
           method="post"
           enctype="multipart/form-data"
           action="/signUp"
-          onsubmit="signUp(event)"
         >
           <div class="field">
             <span class="fa fa-user"></span>
@@ -40,6 +39,9 @@
           <div class="field space">
             <span class="fa fa-profile_picture"></span>
             <input type="file" name="profilePicture" accept="image/*" />
+          </div>
+          <div class="field space">
+            <input type="checkbox" name="Vegetarian" /> Vegetarian
           </div>
           <div class="field space">
             <input type="submit" value="SUBMIT" />

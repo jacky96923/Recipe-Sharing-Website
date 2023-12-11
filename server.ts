@@ -1,17 +1,26 @@
 import express from "express";
+var bodyParser = require("body-parser");
 import path from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
 import { env } from "./env";
 import { post_recipeRouter } from "./post_recipes";
-import userRouter from "./user";
-import { sessionMiddleware } from "./session";
-import { user_profileRouter } from "./userprofile";
+import { filterResultRouter } from "./filterResult";
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true })); //for form submissions
+app.use(express.json());
 
+import userRouter from "./user";
+import { sessionMiddleware } from "./session";
+import { user_profileRouter } from "./userprofile";
+
+// const app = express();
+
+//app.use(express.urlencoded({ extended: true })); //for form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //counter for entering the page // from the file env
 app.use(sessionMiddleware);
 
@@ -60,6 +69,7 @@ app.use(userRouter);
 //add recipe page
 app.use(recipeRouter);
 app.use(post_recipeRouter);
+app.use(filterResultRouter);
 app.use(user_profileRouter);
 
 //page load setting

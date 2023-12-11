@@ -13,10 +13,11 @@ async function login(event) {
     }),
   });
   let json = await res.json();
+  console.log(json);
   if (json.error) {
     errorMessage.textContent = json.error;
     return;
   }
   errorMessage.textContent = "Login Successfully";
-  location.href = "/";
+  location.href = "/userprofile";
 }

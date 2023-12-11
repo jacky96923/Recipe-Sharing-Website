@@ -1,4 +1,5 @@
 import express from "express";
+var bodyParser = require("body-parser");
 import path from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
@@ -9,8 +10,9 @@ import { sessionMiddleware } from "./session";
 
 const app = express();
 
-app.use(express.urlencoded({ extended: true })); //for form submissions
-
+//app.use(express.urlencoded({ extended: true })); //for form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //counter for entering the page // from the file env
 app.use(sessionMiddleware);
 

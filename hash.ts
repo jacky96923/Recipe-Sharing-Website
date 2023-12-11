@@ -1,14 +1,21 @@
-import { compare, hash } from "bcryptjs";
+import { compareSync, hashSync } from "bcryptjs";
 
-const ROUND = 12;
+//const ROUND = 12;
 
-export function hashPassword(password: string): Promise<string> {
-  return hash(password, ROUND);
+export async function hashPassword(password: string): Promise<string> {
+  //return hash(password, ROUND);
+  return await hashSync(password);
 }
 
-export function comparePassword(option: {
+export async function comparePassword(option: {
   password: string;
   password_hash: string;
 }): Promise<boolean> {
-  return compare(option.password, option.password_hash);
+  console.log("[hash]", option);
+  //console.log(await hashSync(option.password_hash));
+  return await compareSync(
+    option.password,
+    //await hashSync(option.password_hash)
+    option.password_hash
+  );
 }

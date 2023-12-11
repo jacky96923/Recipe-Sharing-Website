@@ -185,7 +185,7 @@ create table recipe_exclude(
     avoid_id integer references avoid(id)
 );
 
-
+alter table recipe drop column video;
 
 
 

@@ -27,9 +27,16 @@ function renderData(recipes) {
   let cuisineElement = document.querySelector("#cuisine");
   cuisineElement.textContent = recipes.recipe_info[0].cuisine;
 
-  let allergiesElement = document.querySelector("#allergies");
+  let allergiesTemplate = document.querySelector("#template_2");
+  let allergiesContainer = document.querySelector("#allergies_container");
+  allergiesContainer.textContent = " ";
   for (allergies of recipes.recipe_allergies) {
+    let node = allergiesTemplate.content.cloneNode(true);
+    let allergiesElement = node.querySelector("#allergies");
+
     allergiesElement.textContent = allergies.name;
+
+    allergies_container.appendChild(node);
   }
 
   let profile_picElement = document.querySelector("#profile_pic");

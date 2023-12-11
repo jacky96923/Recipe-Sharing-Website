@@ -49,11 +49,22 @@
                 <div id="recipe_attributes">
                     <div id="ingredients_count_container"><div id="ingredients_count"></div>Ingredients</div>
                     <div class="vl"></div>
-                    <div id="cuisine_container">
+                    <div id="cuisine_box">
+                      <div id="cuisine_text">Style :</div>
+                      <div id="cuisine_container">
                         <div id="cuisine">cuisine</div>
                     </div>
+                    </div>
+                    
                     <div class="vl"></div>
-                    <div id="allergies">allergies</div> 
+                    
+                    <div id="allergies_box">
+                      <div id="allergies_text">Recipe Contains :</div>
+                      <div id="allergies_container">
+                        <div id="allergies"></div>
+                        </div>
+                    </div>
+                     
                 </div>
 
                 <div id="profile_container">
@@ -101,6 +112,10 @@
                     <div id="unit">unit</div>
                 </div>
 
+            </template>
+
+            <template id="template_2">
+              <div id="allergies"></div>
             </template>
 
             <!-- Modal -->

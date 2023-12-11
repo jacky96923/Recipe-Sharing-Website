@@ -3,13 +3,12 @@
   flex-wrap: wrap;
   height: 20rem;
   width: 15rem;
-  border: 1px solid black;
+
   border-radius: 2%;
   object-fit: contain;
 }
 
 #coverImage_container {
-  border: 1px solid black;
   height: 15rem;
   width: auto;
   border-radius: 2%;
@@ -24,7 +23,7 @@
 #recipeInfo_container {
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid black;
+
   height: 5rem;
   width: 15rem;
 }

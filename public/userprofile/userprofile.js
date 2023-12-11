@@ -15,19 +15,19 @@ function renderData(profiles) {
   let recipe_cardTemplate = document.querySelector("#template");
   let recipe_card = document.querySelector("#recipe_card");
   recipe_card.textContent = " ";
-  for (let profile of profiles) {
-    if (profile.is_cover) {
-      let node = recipe_cardTemplate.content.cloneNode(true);
-      let coverImageElement = node.querySelector("#coverImage");
-      let recipeNameElement = node.querySelector("#recipeName");
-      let userNameElement = node.querySelector("#userName");
-
-      coverImageElement.src = profile.image;
-      recipeNameElement.textContent = profile.recipe_title;
-
-      userNameElement.textContent = profile.user_name;
-      recipe_card.appendChild(node);
+  for (let profile of profiles.user_profiles) {
+    let node = recipe_cardTemplate.content.cloneNode(true);
+    let recipeNameElement = node.querySelector("#recipeName");
+    let userNameElement = node.querySelector("#userName");
+    let coverImageElement = node.querySelector("#coverImage");
+    for (let i = 0; i < profiles.profile_coverImage.length; i++) {
+      coverImageElement.src = profiles.profile_coverImage[i].image;
     }
+
+    recipeNameElement.textContent = profile.recipe_title;
+
+    userNameElement.textContent = profile.user_name;
+    recipe_card.appendChild(node);
   }
 }
 

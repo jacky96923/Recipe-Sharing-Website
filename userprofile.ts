@@ -13,16 +13,26 @@ user_profileRouter.get("/userprofile/:id", async (req, res, next) => {
     }
     console.log("id:", id);
 
-    let result = await client.query(
-      `select distinct recipe.id, user_name, title as recipe_title, image, is_cover from recipe
+    let result1 = await client.query(
+      `select recipe.id, user_name, title as recipe_title from recipe
       join users on recipe.user_id = users.id
-      join recipe_image on recipe_image.recipe_id = recipe.id
-      where recipe.id = $1;`,
+      where user_id = $1;`,
       [id]
     );
-    let user_profiles = result.rows;
+
+    let result2 = await client.query(
+      `select user_id, recipe_id, image, is_cover from recipe
+      join users on recipe.user_id = users.id
+      join recipe_image on recipe_image.recipe_id = recipe.id
+      where recipe_id = $1
+      and is_cover = true`,
+      [id]
+    );
+    let user_profiles = result1.rows;
+    let profile_coverImage = result2.rows;
     console.log(user_profiles);
-    res.json(user_profiles);
+    console.log(profile_coverImage);
+    res.json({ user_profiles, profile_coverImage });
   } catch (error) {
     console.log(`Cannot get recipe info from postgreSql`, error);
   }

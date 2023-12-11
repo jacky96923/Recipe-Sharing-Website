@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form onsubmit="test(event)" id="form">
+      <div>
+        Diet:
+        <input type="checkbox" name="diet" value="Vegetarian" />
+        <input type="checkbox" name="diet" value="Meat" />
+      </div>
+
+      <div>
+        Allergies:
+        <input type="checkbox" name="allergies" value="Peanut" />
+        <input type="checkbox" name="allergies" value="Gluten" />
+      </div>
+
+      <div>
+        Drink:
+        <input type="checkbox" name="drink" value="apple" />
+        <input type="checkbox" name="drink" value="orange" />
+      </div>
+
+      <input type="submit" />
+    </form>
+    <script>
+      function test(event) {
+        event.preventDefault();
+        console.log(new FormData(form));
+      }
+    </script>
+  </body>
+</html>

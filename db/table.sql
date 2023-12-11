@@ -194,6 +194,7 @@ alter table meal_schedule RENAME COLUMN breakfast_recipe_id to recipe_id;
 alter table meal_schedule drop column lunch_recipe_id;
 
 alter table meal_schedule drop column dinner_recipe_id;
+alter table recipe drop column video;
 
 
 

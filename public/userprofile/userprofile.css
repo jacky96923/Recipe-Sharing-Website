@@ -1,0 +1,42 @@
+#recipe_card {
+  display: flex;
+  flex-wrap: wrap;
+  height: 20rem;
+  width: 15rem;
+  border: 1px solid black;
+  border-radius: 2%;
+  object-fit: contain;
+}
+
+#coverImage_container {
+  border: 1px solid black;
+  height: 15rem;
+  width: auto;
+  border-radius: 2%;
+  overflow: hidden;
+}
+
+#coverImage {
+  height: 15rem;
+  width: 15rem;
+}
+
+#recipeInfo_container {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  height: 5rem;
+  width: 15rem;
+}
+
+#recipeName_container {
+  font-size: 1.7rem;
+  display: flex;
+  height: 3rem;
+  width: 15rem;
+}
+
+#userName_container {
+  display: flex;
+  width: 8rem;
+}

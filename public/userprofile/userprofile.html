@@ -3,12 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>userProfile</title>
+    <title>Document</title>
     <link rel="stylesheet" href="/userprofile/userprofile.css" />
   </head>
   <body>
-    <header>User profile</header>
+    <div id="recipe_card">
+      <div id="recipe_card_inner">
+        <div id="coverImage_container">
+          <img
+            id="coverImage"
+            src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1568222255998.jpeg"
+          />
+        </div>
+        <div id="recipeInfo_container">
+          <div id="recipeName_container">
+            <div id="recipeName">Fake Chicken</div>
+          </div>
+          <div id="userName_container">
+            <div id="userName">Some Fat guy</div>
+          </div>
+          <button id="delete_btn">Delete</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- template for cards -->
+
+    <template id="template">
+      <div id="recipe_card">
+        <div id="recipe_card_inner">
+          <div id="coverImage_container">
+            <img
+              id="coverImage"
+              src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/11/2/0/DV1510H_fried-chicken-recipe-10_s4x3.jpg.rend.hgtvcom.1280.1280.suffix/1568222255998.jpeg"
+            />
+          </div>
+          <div id="recipeInfo_container">
+            <div id="recipeName_container">
+              <div id="recipeName">Fake Chicken</div>
+            </div>
+            <div id="userName_container">
+              <div id="userName">Some Fat guy</div>
+            </div>
+            <button id="delete_btn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </template>
 
     <script src="/userprofile/userprofile.js"></script>
+    <img src="/profile_img/f9c36596c26b8d65e9131fd691a73c37" />
   </body>
 </html>

@@ -1,5 +1,5 @@
 import express from "express";
-import expressSession from "express-session";
+var bodyParser = require("body-parser");
 import path from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
@@ -12,21 +12,25 @@ const app = express();
 app.use(express.urlencoded({ extended: true })); //for form submissions
 app.use(express.json());
 
+import userRouter from "./user";
+import { sessionMiddleware } from "./session";
+import { user_profileRouter } from "./userprofile";
+
+// const app = express();
+
+//app.use(express.urlencoded({ extended: true })); //for form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 //counter for entering the page // from the file env
-app.use(
-  expressSession({
-    secret: env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+app.use(sessionMiddleware);
 
 //for counter // need asking
-declare module "express-session" {
-  interface SessionData {
-    counter: number;
-  }
-}
+// declare module "express-session" {
+//   interface SessionData {
+//     counter: number;
+//     user: { id: number };
+//   }
+// }
 
 // for types of files be ignored by the counter
 let mediaExtnameList = [
@@ -59,16 +63,20 @@ app.use((req, res, next) => {
   next();
 });
 
+//add user login page
+app.use(userRouter);
+
 //add recipe page
 app.use(recipeRouter);
 app.use(post_recipeRouter);
 app.use(filterResultRouter);
+app.use(user_profileRouter);
 
 //page load setting
-app.use("/upload", express.static("upload"));
+app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
 
 //page port setting
 app.listen(env.PORT, () => {
-  console.log(env.PORT);
+  console.log("http://localhost:" + env.PORT);
 });

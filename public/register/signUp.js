@@ -1,8 +1,8 @@
-async function login(event) {
+async function signUp(event) {
   event.preventDefault();
   let form = event.target;
-  let res = await fetch("/loginToAccount", {
-    method: "POST",
+  let res = await fetch("/signUp", {
+    method: "post",
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -13,11 +13,10 @@ async function login(event) {
     }),
   });
   let json = await res.json();
-  console.log(json);
   if (json.error) {
     errorMessage.textContent = json.error;
     return;
   }
-  errorMessage.textContent = "Login Successfully";
-  location.href = "/userprofile";
+  errorMessage.textContent = "signup successfully";
+  location.href = "/login.html";
 }

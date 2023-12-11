@@ -10,6 +10,5 @@ export let env = {
   DB_USERNAME: "",
   DB_PASSWORD: "",
 };
-console.log(env);
 
 populateEnv(env, { mode: "halt" });

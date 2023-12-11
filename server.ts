@@ -4,12 +4,13 @@ import path from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
 import { env } from "./env";
-import { post_recipeRouter } from "./post_recipes"
-
+import { post_recipeRouter } from "./post_recipes";
+import { filterResultRouter } from "./filterResult";
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true })); //for form submissions
+app.use(express.json());
 
 //counter for entering the page // from the file env
 app.use(
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
 //add recipe page
 app.use(recipeRouter);
 app.use(post_recipeRouter);
+app.use(filterResultRouter);
 
 //page load setting
 app.use("/upload", express.static("upload"));

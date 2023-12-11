@@ -40,3 +40,7 @@ main {
 .fc-day.selected{
     background-color: aqua;
 }
+.meal_image{
+    height: 10rem;
+    width:10rem;
+}

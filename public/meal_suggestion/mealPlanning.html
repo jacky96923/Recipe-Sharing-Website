@@ -26,33 +26,20 @@
   <h2>(Calendar)</h2>
   <h3>Today</h3>
   <body>
+    <form method='POST' action="/meal_Suggestion/mealPlanning"></form>
     <div id='mealPlanning'></div>
     <div class='calendar' id ='calendar' style=width:80%; display: inline-block ></div>
-    <div class="dayMeal"  id="morning">
-      早上
-        <button onclick="selectMealType('breakfasat')">
-          <img src="add.svg"> 
-      </button >
-    </div>
+    <div id="meal_schedule">
+</div>
+<template>    
+  <div class="dayMeal"  id="morning">
 
-    <div class="dayMeal"   id="afternoon">
-      中午
-        <button onclick="selectMealType('lunch')">
-          <img src="add.svg">      
-      </button>
-    </div>
+  <div class="meal_title"></div>
+    <button  >
+      <img class="meal_image" src="add.svg"> 
+  </button >
+</div></template>
 
-    <div class="dayMeal"    id="dinner">
-      晚上
-        <button onclick="selectMealType('dinner')">
-          <img src="add.svg">
-      </button>
-
-      <div class="dayMeal">
-          <button>
-            儲存
-          </button>
-    </div>
 
     <script type="module" src="/meal_suggestion/mealPlanning.js"></script>
     <script

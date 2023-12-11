@@ -1,26 +1,6 @@
-// const socket = io.connect();
+// const { default: test } = require("node:test");documentdocument
 
-// const { fstat } = require("fs");
-
-// let loadFilter;
-// async function loadFilterResults() {
-//   let res = await fetch("/results");
-//   let json = await res.json();
-//   results.textContent = json.results;
-// }
-// loadFilterResults();
-// window.addEventListener('mouseover', loadFilterResults)
-//  window.addEventListener('visibilitychange', loadFilterResults)
-// setInterval(loadCounter, 1000)
-//   async function inc() {
-//     let res = await fetch('/counter/inc', {
-//       method: 'POST',
-//     })
-
-// recipeList.appendChild(recipeTemplate.cloneNode(true));
-// recipeList.appendChild(recipeTemplate.cloneNode(true));
-// recipeList.appendChild(recipeTemplate.cloneNode(true));
-// recipeList.appendChild(recipeTemplate.cloneNode(true));
+let selected_recipe_id = null;
 
 async function loadFavouriteRecipes() {
   try {
@@ -38,7 +18,14 @@ async function loadFavouriteRecipes() {
       console.log({ node });
       node.querySelector("#title").textContent = recipe.title;
       node.querySelector("img").src = "/upload/" + recipe.image;
-      node.onclick = () => {};
+      node.onclick = () => {
+        // node.style.borderColor = "red";
+        document
+          .querySelectorAll(".recipe.selected")
+          .forEach((node) => node.classList.remove("selected"));
+        node.classList.add("selected");
+        selected_recipe_id = recipe.recipe_id;
+      };
       favourResultList.appendChild(node);
       filterResultTemplate.remove();
     }
@@ -49,34 +36,23 @@ async function loadFavouriteRecipes() {
 }
 loadFavouriteRecipes();
 
-// let recipeTemplate = recipeList.children[0];
-// recipeTemplate.remove();
+async function selectMealImage() {
+  if (!selected_recipe_id) {
+    alert("please select a recipe first");
+    return;
+  }
+  let params = new URLSearchParams(location.search);
+  let date = params.get("date");
+  let mealType = params.get("mealType");
+  console.log(mealType, date, selected_recipe_id);
+  location.href = "/meal_suggestion/mealPlanning.html?" + ".dateStr" + params;
+  let res = await fetch("/selectedmeal", {
+    method: "POST",
+    body: JSON.stringify({ mealType, date, selected_recipe_id }),
+    headers: { "content-type": "application/json" },
+  });
+  let json = await res.json();
+  let selectMealImage = [];
+}
 
-// // recipeList.appendChild(recipeTemplate.cloneNode(true));
-// // recipeList.appendChild(recipeTemplate.cloneNode(true));
-// // recipeList.appendChild(recipeTemplate.cloneNode(true));
-// // recipeList.appendChild(recipeTemplate.cloneNode(true));
-
-// async function loadFavouriteRecipes() {
-//   try {
-//     let res = await fetch("/filterresult/favourite");
-//     let json = await res.json();
-
-//     if (json.error) {
-//       throw new Error(json.error);
-//     }
-
-//     for (let recipe of json.filterresult) {
-//       // show recipe
-//       let node = recipeTemplate.cloneNode(true);
-//       node.querySelector("figcaption").textContent = recipe.title;
-//       node.querySelector("img").src = "/upload/" + filterresult.image;
-//       node.onclick = () => {};
-//       recipeList.appendChild(node);
-//     }
-//   } catch (error) {
-//     // show error in UI
-//     console.error("error loading content:", error);
-//   }
-// }
-// loadFavouriteRecipes();
+insertrecipe();

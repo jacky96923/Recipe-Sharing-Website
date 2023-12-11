@@ -1,5 +1,12 @@
-.recipe
-{display: inline-block;}
+.recipe {
+  display: inline-block;
+}
+
 .recipe img {
   max-height: 200px;
+  border: 1rem solid;
+}
+
+.recipe.selected img {
+  border-color: red;
 }

@@ -14,6 +14,36 @@
 #
 ////////////////////////////////////
 
+
+recipe
+------
+id integer PK
+users_id integer FK >0- users.id
+title integer
+video varchar(255)
+cuisine_id integer FK >0- cuisine.id
+calories integer
+content text
+diet_id integer FK >0- diet.id
+
+recipe_image
+------------
+id integer PK
+recipe_id integer FK >0- recipe.id
+image varchar(255)
+is_cover boolean
+
+
+recipe_ingredient
+-----------------
+id integer PK
+recipe_id integer FK >0- recipe.id
+ingredient_name text
+amount
+unit
+
+
+
 users
 ----
 id integer PK
@@ -30,25 +60,49 @@ user_id integer FK >0- users.id
 coffee_amount integer 
 
 
+user_like
+---------
+id integer PK
+user_id integer FK >0- users.id
+recipe_id integer FK >0- recipe.id
+
+
+user_diet
+---------
+id integer PK
+user_id integer FK >0- users.id
+diet_id integer FK >0- diet.id
+
+
+recipe_like
+---------
+id integer PK
+user_id integer FK >0- users.id
+recipe_id integer FK >0- recipe.id
+
+recipe_view
+-----------
+id integer PK
+user_id integer FK >0- users.id
+recipe_id integer FK >0- recipe.id
+
 
 cuisine
 -----------
 id integer PK
 name var(255)
 
-
-
 diet
 -----------
 id integer PK
 name var(255)
 
-
-
-allergies
+meal_schedule
 -----------
-id integer PK
-name var(255) 
+user_id integer FK >0- users.id
+date date
+recipe_id integer FK >0- recipe.id
+period enum ('breakfast','lunch','dinner')
 
 
 
@@ -60,88 +114,10 @@ cuisine_id integer FK >0- cuisine.id
 preference enum ('like','dislike')
 
 
-
-
-recipe
-------
-id integer PK
-users_id integer FK >0- users.id
-title integer
-video varchar(255)
-cuisine_id integer FK >0- cuisine.id
-calories integer
-content text
-diet_id integer FK >0- diet.id
-
-
-
-
-recipe_image
-------------
-id integer PK
-recipe_id integer FK >0- recipe.id
-image varchar(255)
-is_cover boolean
-
-
-
-
-recipe_ingredient
------------------
-id integer PK
-recipe_id integer FK >0- recipe.id
-ingredient_name text
-amount
-unit
-
-
-
-
-user_like
----------
-id integer PK
-user_id integer FK >0- users.id
-recipe_id integer FK >0- recipe.id
-
-
-
-
-user_diet
----------
-id integer PK
-user_id integer FK >0- users.id
-diet_id integer FK >0- diet.id
-
-
-
-
-recipe_like
----------
-id integer PK
-user_id integer FK >0- users.id
-recipe_id integer FK >0- recipe.id
-
-
-
-
-recipe_view
+allergies
 -----------
 id integer PK
-user_id integer FK >0- users.id
-recipe_id integer FK >0- recipe.id
-
-
-
-
-meal_schedule
------------
-id integer PK
-user_id integer FK >0- users.id
-date date
-breakfast_recipe_id integer FK >0- recipe.id
-lunch_recipe_id integer FK >0- recipe.id
-dinner_recipe_id integer FK >0- recipe.id
-
+name var(255) 
 
 
 user_allergies
@@ -151,8 +127,6 @@ user_id integer FK >0- users.id
 allergies_id integer FK >0- allergies.id
 
 
-
-
 recipe_allergies
 -----------
 id integer PK
@@ -160,51 +134,27 @@ recipe_id integer FK >0- recipe.id
 allergies_id integer FK >0- allergies.id
 
 
-
-exclude
------------
-id integer PK
-name var(255)
-
-
-user_exclude
------------
-id integer PK
-user_id integer FK >0- users.id
-exclude_id integer FK >0- exclude.id
-
-
-recipe_exclude
------------
-id integer PK
-recipe_id integer FK >0- recipe.id
-exclude_id integer FK >0- exclude.id
-
-
 # zoom: 0.810
-# view: (145, 44)
+# view: (-657, -292)
 # text-bg: #6495ed
 # text-color: #000000
 # diagram-bg: #f5f5f5
 # diagram-text: #000000
 # table-bg: #ffffff
 # table-text: #000000
-# recipe (1041, 637)
-# recipe_image (574, 496)
-# recipe_ingredient (1460, 937)
-# user_like (1116, 345)
-# user_diet (1424, 339)
-# recipe_like (479, 219)
-# recipe_view (1447, 566)
-# meal_schedule (1429, 723)
+# recipe (1047, 499)
+# recipe_image (944, 19)
+# recipe_ingredient (1412, 795)
+# users (1712, 173)
+# coffee_transaction (1693, 532)
+# user_like (1413, 329)
+# user_diet (1429, 450)
+# recipe_like (505, 435)
+# recipe_view (1469, 1035)
+# cuisine (1153, 303)
+# meal_schedule (1411, 609)
+# user_cuisine (1383, 126)
+# allergies (1026, 167)
 # user_allergies (1403, -7)
 # recipe_allergies (710, 698)
-# users (1683, 210)
-# coffee_transaction (1990, 521)
-# cuisine (1106, 510)
-# diet (1078, 976)
-# allergies (869, 90)
-# user_cuisine (1315, 154)
-# preference (1118, 171)
-# user_preference (1099, -25)
-# recipe_preference (773, 307)
+# diet (1082, 908)

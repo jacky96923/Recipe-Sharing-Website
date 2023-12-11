@@ -21,7 +21,8 @@ function renderData(profiles) {
     let userNameElement = node.querySelector("#userName");
     let coverImageElement = node.querySelector("#coverImage");
     for (let i = 0; i < profiles.profile_coverImage.length; i++) {
-      coverImageElement.src = profiles.profile_coverImage[i].image;
+      let imagePath = `/uploads/${profiles.profile_coverImage[i].image}`;
+      coverImageElement.src = imagePath;
     }
 
     recipeNameElement.textContent = profile.recipe_title;

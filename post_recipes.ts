@@ -81,21 +81,28 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       let input = parser.parse({ fields });
       // hard coded user_id and recipe_id.
       let user_id = 1;
-      let recipe_id = 1;
+      // let recipe_id = 1;
       let title = input.fields.recipe_name;
       let cuisine_id = input.fields.cuisine;
       let calories = input.fields.calories;
       let content = input.fields.content_input;
       let diet_id = input.fields.diet;
 
-      await client.query(
-        `INSERT INTO recipe (user_id, title, cuisine_id, calories, content, diet_id)
-        VALUES ($1, $2, $3, $4, $5, $6)`,
+      let result = await client.query(
+        /* sql */ `
+        INSERT INTO recipe 
+        (user_id, title, cuisine_id, calories, content, diet_id)
+        VALUES ($1, $2, $3, $4, $5, $6)
+        returning id
+        `,
         [user_id, title, cuisine_id, calories, content, diet_id]
       );
+      let recipe_id = result.rows[0].id;
 
       for (let i = 0; i < input.fields.allergies.length; i++) {
         let allergies_id = input.fields.allergies[i];
+        console.log("insert recipe_allergies", { recipe_id, allergies_id });
+
         await client.query(
           `INSERT INTO recipe_allergies (recipe_id, allergies_id)
           VALUES ($1, $2)`,
@@ -154,7 +161,7 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       res.json({ message: "submit success" });
       // res.redirect('/post_recipes/submit_success.html')
     } catch (error) {
-      next(error);
+      res.json({ error: "Missing Content" });
     }
   });
 });

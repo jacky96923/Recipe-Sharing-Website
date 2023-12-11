@@ -10,14 +10,18 @@ document
     // Serialize the Form afterwards
     const form = event.target;
     const formObject = new FormData(form);
+    try {
+      const res = await fetch("/submit", {
+        method: "POST",
+        body: formObject,
+      });
+      const result = await res.json();
 
-    const res = await fetch("/submit", {
-      method: "POST",
-      body: formObject,
-    });
-    const result = await res.json();
-
-    console.log(result);
+      console.log(result);
+      console.log(allergies_id);
+    } catch (error) {
+      console.log(error);
+    }
   });
 
 let ingredientTemplate = ingredient_list.children[0];

@@ -7,6 +7,7 @@ export let recipeRouter = Router();
 recipeRouter.get("/recipe/:id", async (req, res) => {
   try {
     let id = req.params.id;
+
     let result1 = await client.query(
       `SELECT recipe.id, user_name, title AS recipe_title, calories, content, diet.name AS diet, cuisine.name AS cuisine, profile_pic
       FROM recipe

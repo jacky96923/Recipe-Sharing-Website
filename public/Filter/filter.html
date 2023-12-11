@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="public/filter.css" rel="stylesheet" />
+    <link href="filter.css" rel="stylesheet" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,20 +23,40 @@
     <h2>Selections For</h2>
     <div id="filterItems"></div>
 
-    <div class="filter" id="calories">
+    <!-- <div class="filter" id="calories">
       <form method="post" action="matching">
         <label>Calories <input type="text" name="number" /></label>
       </form>
-    </div>
+    </div> -->
 
     <div class="filter" id="ingredients">
-      <form method="post" action="matching">
+      <form method="get" action="/recipes/search/by-ingredient">
         <label
-          >Home Ingredients
-          <input class="ingredient" id="ingredient1" type="text" name="items" />
-          <input class="ingredient" id="ingredient2" type="text" name="items" />
-          <input class="ingredient" id="ingredient3" type="text" name="items" />
-          <input class="ingredient" id="ingredient4" type="text" name="items" />
+          >Ingredients
+          <input
+            class="ingredient"
+            id="ingredient1"
+            type="text"
+            name="ingredient_name"
+          />
+          <input
+            class="ingredient"
+            id="ingredient2"
+            type="text"
+            name="ingredient_name"
+          />
+          <input
+            class="ingredient"
+            id="ingredient3"
+            type="text"
+            name="ingredient_name"
+          />
+          <input
+            class="ingredient"
+            id="ingredient4"
+            type="text"
+            name="ingredient_name"
+          />
         </label>
         <button class="confirmation" id="goodchoice ">確定</button>
       </form>

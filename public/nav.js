@@ -27,7 +27,7 @@ app.innerHTML = /* html */ `
         </li>
         <li class="nav-item">
             <a class="nav-link Meal Filter" href="/filter/filter.html" aria-disabled="true"
-            >Meal Filter</a
+            >Recipe Explorer</a
             >
         </li>
         <li class="nav-item">

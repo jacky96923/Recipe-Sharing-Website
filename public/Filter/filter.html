@@ -18,13 +18,12 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
-    <title>Filter</title>
+    <title>Recipe Explorer</title>
   </head>
   <body>
     <main hidden>
-      <h1>Filter</h1>
+      <h1>Recipe Explorer</h1>
       <h2>Selections For</h2>
-      <div id="filterItems"></div>
 
       <!-- <div class="filter" id="calories">
         <form method="post" action="matching">
@@ -33,7 +32,11 @@
       </div> -->
 
       <div class="filter" id="ingredients">
-        <form method="get" action="/recipes/search/by-ingredient">
+        <form
+          method="get"
+          action="/recipes/search/by-ingredient"
+          onsubmit="searchByIngredients(event)"
+        >
           <label
             >Ingredients
             <input
@@ -65,11 +68,24 @@
         </form>
       </div>
 
-      <h2>已選擇喜好</h2>
-      <h4>Diets</h4>
-      <h4>Allegies</h4>
-      <h4>Disliked</h4>
-      <h4>Cuisines</h4>
+      <div id="filterItems"></div>
+
+      <!-- below from jacky userprofile.html -->
+      <template id="template">
+        <div class="recipe_card">
+          <div id="recipe_card_inner">
+            <div id="coverImage_container">
+              <img id="coverImage" src=" " />
+            </div>
+            <div id="recipeInfo_container">
+              <div id="recipeName_container">
+                <div class="recipeName">Fake Chicken</div>
+              </div>
+              <button class="selectionButton">Bookmark</button>
+            </div>
+          </div>
+        </div>
+      </template>
     </main>
 
     <script src="/nav.js"></script>

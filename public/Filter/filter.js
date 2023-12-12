@@ -1,3 +1,5 @@
+import "/userprofile/userprofile.js";
+
 let ingredientChoice_recipe_id = null;
 
 async function loadIngredientChoice() {
@@ -35,7 +37,8 @@ async function selectRecipe() {
   let params = new URLSearchParams(result.search);
   let recipe = params.get("recipe");
   console.log(recipe);
-  location.href = "/filter/filter.html?" + params;
+  // location.href = "/filter/filter.html?" + params;
+  // location.href = "/userprofile/userprofile.html?" + params;
   let res = await fetch("/ingredentChoice", {
     method: "POST",
     body: JSON.stringify({ recipe }),

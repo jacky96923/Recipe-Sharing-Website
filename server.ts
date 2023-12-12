@@ -76,6 +76,7 @@ app.use(filterIngredientRouter);
 
 //page load setting
 app.use("/uploads", express.static("uploads"));
+app.use("/upload", express.static("upload"));
 app.use(express.static("public"));
 
 //page port setting

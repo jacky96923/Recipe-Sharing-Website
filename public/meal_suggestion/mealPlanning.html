@@ -22,23 +22,27 @@
 
 
   </head>
-  <h1>Meal Planning</h1>
-  <h2>(Calendar)</h2>
-  <h3>Today</h3>
-  <body>
-    <form method='POST' action="/meal_Suggestion/mealPlanning"></form>
-    <div id='mealPlanning'></div>
-    <div class='calendar' id ='calendar' style=width:80%; display: inline-block ></div>
-    <div id="meal_schedule">
-</div>
-<template>    
-  <div class="dayMeal"  id="morning">
 
-  <div class="meal_title"></div>
-    <button  >
-      <img class="meal_image" src="add.svg"> 
-  </button >
-</div></template>
+  <main hidden>
+    <h1>Meal Planning</h1>
+    <body>
+      <form method='POST' action="/meal_Suggestion/mealPlanning"></form>
+      <div id='mealPlanning'></div>
+      <div class='calendar' id ='calendar' style=width:80%; display: inline-block ></div>
+      <div id="meal_schedule">
+  </div>
+  <template>    
+    <div class="dayMeal"  id="morning">
+  
+    <div class="meal_title"></div>
+      <button  >
+        <img class="meal_image" src="add.svg"> 
+    </button >
+  </div></template>
+  </main>
+  <script src="/nav.js"></script>
+
+
 
 
     <script type="module" src="/meal_suggestion/mealPlanning.js"></script>

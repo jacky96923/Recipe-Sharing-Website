@@ -21,8 +21,7 @@ app.innerHTML = /* html */ `
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Post New Recipes</button>
         </li>
         <li class="nav-item">
-            <a class="nav-link Your_Recipes" aria-disabled="true"
-            >Your Recipes</a
+        <a class="nav-link Your Recipes" href="/userprofile/userprofile.html">Your Recipes</a
             >
         </li>
         <li class="nav-item">

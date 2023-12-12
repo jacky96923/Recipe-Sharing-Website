@@ -71,18 +71,63 @@ async function searchByIngredients(event) {
       "/uploads/" + ingredientChoice.image;
 
     filterItems.appendChild(recipe_card);
-
-    // let buttons = node.querySelectorAll(".buttons");
-    // for (let button of buttons) {
-    //   button.addEventListener("click", () => {
-    //     window.location = `/recipes/recipes.html?id=${recipe_id}`;
-    //   });
-    // }
-    // let recipeImage = template.image
-    //   .querySelector(".recipeImage")
-    //   .cloneNode(true);
   }
 }
+// let buttontemplate = document.querySelector(".selectionButton");
+// // buttontemplate.remove();
+
+async function allIngredients() {
+  console.log("allIngredients");
+  // preventDefault();
+  // let forms = event.target;
+  // let formData = new FormData(form);
+  // let params = new URLSearchParams(formData);
+  let res = await fetch("/displayAllIngredient", {
+    method: "GET",
+  });
+  // console.log("res from all ingredient:", res);
+  let json = await res.json();
+  console.log("json:", json);
+  filterItems.textContent = json.allIngredient.length;
+  for (let allIngredient of json.allIngredient) {
+    // console.log("in the loop");
+    let recipe_card = template.content
+      .querySelector(".recipe_card")
+      .cloneNode(true);
+    // console.log("in the loop2");
+    recipe_card.querySelector(".recipeName").textContent = allIngredient.title;
+    // console.log("in the loop3");
+
+    recipe_card.querySelector("#coverImage").src =
+      "/uploads/" + allIngredient.image;
+
+    filterItems.appendChild(recipe_card);
+
+    let recipe_id = allIngredient.id;
+    console.log(recipe_id);
+
+    // let node = buttontemplate.cloneNode(true);
+    // node.addEventListener("click", () => {
+    //   window.location = `/recipes/recipes.html?id=${recipe_id}`;
+    // });
+    // recipe_card.appendChild(node);
+  }
+  // let recipeImage = template.image
+  //   .querySelector(".recipeImage")
+  //   .cloneNode(true);
+}
+
+allIngredients();
+
+// let buttons = node.querySelectorAll(".detailContent");
+// for (let button of buttons) {
+//   button.addEventListener("click", () => {
+//     window.location = `/recipes/recipes.html?id=${recipe_id}`};
+//   )};
+
+console.log(recipe_id);
+
+//   }
 
 //below from Jacky userprofile js
 // async function loadCard() {

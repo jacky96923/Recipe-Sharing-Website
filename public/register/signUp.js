@@ -56,6 +56,8 @@ async function loadAttributes() {
   }
 }
 
+loadAttributes();
+
 // async function loadOptions() {
 //   let res = await fetch("/signup/options");
 //   let json = await res.json();

@@ -63,6 +63,31 @@ filterIngredientRouter.get(
   }
 );
 
+filterIngredientRouter.get(
+  "/displayAllIngredient",
+  // "/ingredentExist"
+  async (req, res) => {
+    let { allRecipe_name } = req.query;
+    console.log({ allRecipe_name });
+    let result = await client.query(
+      /* sql */ `
+    Select
+      recipe.id
+    , recipe_ingredient.ingredient_name
+    , recipe_image.image
+    , recipe.title
+    from recipe
+    inner join recipe_ingredient on recipe_ingredient.recipe_id = recipe.id
+    inner join recipe_image on recipe_image.recipe_id = recipe.id
+    `,
+      allRecipe_name as string[]
+    );
+
+    let allIngredient = result.rows;
+    res.json({ allIngredient });
+  }
+);
+
 //below is from JACKY Profile TS
 // filterIngredientRouter.get("/userprofile/:id", async (req, res, next) => {
 //   try {

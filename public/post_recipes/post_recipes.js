@@ -17,10 +17,12 @@ document
       });
       const result = await res.json();
 
-      if (result.error) {
-        alert(result.error);
-        return;
-      }
+      // if (result.error) {
+      //   alert(result.error);
+      //   return;
+      // } else {
+      //   alert("Success!");
+      // }
       console.log(result);
     } catch (error) {
       console.log(error);

@@ -18,7 +18,7 @@ app.innerHTML = /* html */ `
             <a class="nav-link Login" href="/login/login.html">Login/sign-up</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link Post_New_Recipes" href="#">Post New Recipes</a>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Post New Recipes</button>
         </li>
         <li class="nav-item">
             <a class="nav-link Your_Recipes" aria-disabled="true"
@@ -41,6 +41,25 @@ app.innerHTML = /* html */ `
             >
         </li>
     </ul>
+
+                <!-- Modal -->
+<div id="myModal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+<div class="modal-dialog modal-lg">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="staticBackdropLabel">Submitting Recipe !</h1>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-content">
+      <iframe id="modalIframe" src="" width="790" height="1100" frameborder="0"></iframe>
+    </div>
+    <div class="modal-footer">
+      <!-- <button type="button" class="btn btn-secondary">Clear All</button>
+      <button type="button" class="btn btn-primary">Submit!</button> -->
+    </div>
+  </div>
+</div>
+</div>
 </nav>
 `;
 
@@ -49,5 +68,31 @@ let main = document.querySelector("main");
 document.body.appendChild(app);
 app.appendChild(main);
 main.hidden = false;
+
+//load iframe to modal
+let iframe = document.getElementById("modalIframe");
+let modal = document.getElementById("myModal");
+
+modal.addEventListener("show.bs.modal", function () {
+  iframe.src = "http://localhost:8200/post_recipes/post_recipes.html";
+});
+
+modal.addEventListener("hide.bs.modal", function () {
+  iframe.src = "";
+});
+
+let iframeWindow = iframe.contentWindow;
+let form = iframeWindow.document.getElementById("form");
+
+let submitButton = iframeWindow.document.getElementById("submit_button");
+let clearAllButton = iframeWindow.document.getElementById("clear_all_button");
+
+submitButton.addEventListener("click", function () {
+  form.submit();
+});
+
+clearAllButton.addEventListener("click", function () {
+  form.reset();
+});
 
 // }, 1000);

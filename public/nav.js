@@ -45,6 +45,7 @@ app.innerHTML = /* html */ `
 `;
 
 let main = document.querySelector("main");
+main.style.flexGrow = 1;
 
 document.body.appendChild(app);
 app.appendChild(main);

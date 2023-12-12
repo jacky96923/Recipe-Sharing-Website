@@ -4,6 +4,7 @@ import formidable from "formidable";
 import fs from "fs";
 import { randomUUID } from "crypto";
 import { optional, object, string, array } from "cast.ts";
+import "./session";
 
 export let post_recipeRouter = Router();
 

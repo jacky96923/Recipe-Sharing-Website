@@ -1,4 +1,17 @@
+// import { recipeId } from "./common.js";
+// console.log("Recipe id in another file:", recipeId);
 // import { loadAttributes } from "../loadAttributes.js";
+// async function loadId() {
+//   try {
+//     let res = await fetch(`/recipe/${recipeId}`);
+//     let json = await res.json();
+//     console.log("Recipe id: ", json);
+//   } catch (e) {
+//     console.log(e);
+//   }
+// }
+
+// loadId();
 
 loadAttributes();
 
@@ -26,9 +39,10 @@ document
       modal.style.display = "block";
 
       const recipeLink = document.getElementById("recipeLink");
+
       recipeLink.addEventListener("click", function () {
         // Redirect to the submitted recipe page
-        window.top.location.href = "/recipes/recipes.html";
+        window.top.location.href = `/recipes/recipes.html?id=${recipeId}`;
         // Replace "/submitted_recipe" with the actual URL of the submitted recipe page
       });
 

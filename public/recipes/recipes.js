@@ -1,6 +1,11 @@
+const currentUrl = window.location.href;
+const url = new URL(currentUrl);
+export const recipeId = url.searchParams.get("id");
+console.log("Role id:", recipeId);
+
 async function loadRecipes() {
   try {
-    let res = await fetch("/recipe/31");
+    let res = await fetch(`/recipe/${recipeId}`);
     let recipes = await res.json();
 
     renderData(recipes);
@@ -103,3 +108,5 @@ submitButton.addEventListener("click", function () {
 clearAllButton.addEventListener("click", function () {
   form.reset();
 });
+
+module.exports = { recipeId };

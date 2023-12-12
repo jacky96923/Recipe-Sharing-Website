@@ -19,5 +19,5 @@ async function login(event) {
     return;
   }
   errorMessage.textContent = "Login Successfully";
-  location.href = "/userprofile";
+  location.href = "/";
 }

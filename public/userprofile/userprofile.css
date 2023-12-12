@@ -39,3 +39,8 @@
   display: flex;
   width: 8rem;
 }
+
+#profile-picture {
+  max-width: 120px;
+  max-height: 120px;
+}

@@ -4,7 +4,10 @@ import { env } from "./env";
 declare module "express-session" {
   interface SessionData {
     counter: number;
-    user: { id: number };
+    user: {
+      id: number;
+      username: string;
+    };
   }
 }
 

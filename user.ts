@@ -39,14 +39,15 @@ userRouter.post("/loginToAccount", async (req, res, next) => {
         password_hash: user.password,
       })
     ) {
-      (req.session.user as UserSession) = {
+      req.session.user = {
         id: user.id,
         username,
       };
       req.session.save();
 
-      res.json({ user });
-      return;
+      res.json({});
+      // return;
+      // return res.redirect("/");
     } else {
       res.status(400);
       res.json({ error: "wrong username or password" });
@@ -63,12 +64,19 @@ userRouter.post(
   upload.single("profilePicture"),
   async (req, res, next) => {
     try {
-      console.log(req.body);
+      console.log("req.body:", req.body);
+
       let username = req.body.username;
       let password = req.body.password;
       let email = req.body.email;
+      let allergy = req.body.allergy;
+      let avoid = req.body.avoid;
+      let cuisine = req.body.cuisine;
       let file = (req as any).file;
-      console.log(file);
+      // let peanut = req.body.checkbox.value;
+      // let Dairy = req.body.checkbox.value;
+      // let SeaFood = req.body.checkbox.value;
+      // let Gluten = req.body.checkbox.value;
 
       let newImagePath = "";
       if (file) {
@@ -81,24 +89,112 @@ userRouter.post(
       }
       const password_hash = await hashPassword(password);
       console.log(password, password_hash);
-      await client.query(
-        `insert into "users" (user_name, email, password, profile_pic, preferences) values ($1, $2,$3,$4, $5)`,
-        [
-          username,
-          email,
-          password_hash,
-          newImagePath,
-          {
-            diet: { vegetarian: 1, meat: 1 },
-            allergies: { peanut: 1 },
-            abc: [1, 2, 3, 4, 5],
-            def: 0,
-            hij: 1,
-          },
-        ]
+      let result = await client.query(
+        `insert into "users" 
+         (user_name, email, password, profile_pic) 
+        values
+         ($1,$2,$3,$4)
+        returning id`,
+
+        [username, email, password_hash, newImagePath]
       );
+      let user_id = result.rows[0].id;
+      console.log("user_id", user_id);
+
+      if (!allergy) {
+        allergy = [];
+      }
+      if (!Array.isArray(allergy)) {
+        allergy = [allergy];
+      }
+      for (let allergy_id of allergy) {
+        await client.query(
+          `insert into "user_allergies"
+               (user_id, allergies_id)
+              values
+               ($1,$2)
+            `,
+          [user_id, allergy_id]
+        );
+      }
+
+      if (!avoid) {
+        avoid = [];
+      }
+      if (!Array.isArray(avoid)) {
+        avoid = [avoid];
+      }
+      for (let avoid_id of avoid) {
+        await client.query(
+          `insert into "user_avoid"
+               (user_id, avoid_id)
+              values
+               ($1,$2)
+            `,
+          [user_id, avoid_id]
+        );
+      }
+
+      if (!cuisine) {
+        cuisine = [];
+      }
+      if (!Array.isArray(cuisine)) {
+        cuisine = [cuisine];
+      }
+      for (let cuisine_id of cuisine) {
+        await client.query(
+          `insert into "user_cuisine"
+               (user_id, cuisine_id)
+              values
+               ($1,$2)
+            `,
+          [user_id, cuisine_id]
+        );
+      }
+
+      // console.log("user_input", user_allergies);
+
+      // result = await client.query(
+      //   `insert into "allergies"
+      //    (Peanut, Dairy, SeaFood, Gluten)
+      //   values
+      //    ($1,$2,$3,$4)
+      //   returning id`,
+
+      //   [Peanut, Dairy, SeaFood, Gluten]
+      // );
+
+      // await client.query(
+      //   `insert into "users" (user_name, email, password, profile_pic, preferences) values ($1,$2,$3,$4,$5)`,
+      //   [
+      //     username,
+      //     email,
+      //     password_hash,
+      //     newImagePath,
+      //     {
+      //       diet: {
+      //         Vegetarian: 1,
+      //         Meat_Lover: 1,
+      //         Pescetarian: 1,
+      //         Ketogenic: 1,
+      //       },
+      //       allergies: { Peanut: 1, Dairy: 1, SeaFood: 1, Gluten: 1 },
+      //       Disliked_items: {
+      //         Alcohol: 1,
+      //         Pork: 1,
+      //         Beef: 1,
+      //         SeaFood: 1,
+      //         Potatoes: 1,
+      //       },
+      //       Cuisines: { Chinese: 1, North_America: 1, Thai: 1, Vietnamese: 1 },
+      //       Desired_Calories: { 100_999: 1, 1000_1999: 1, 2000_2999: 1 },
+      //     },
+      //   ]
+      // );
+
       // if (preferences.diet.vegetarian == 1) ...
-      return res.json({ user: username, password: password });
+      // return res.json({ user: username, password: password });
+      return res.redirect("/");
     } catch (error) {
       res.status(500);
       res.json({ error: String(error) });
@@ -111,7 +207,7 @@ userRouter.get("/userprofile", async (req, res, next) => {
   try {
     if (req.session.user) {
       //res.json(req.session.user);
-      const user = (req.session as any).user;
+      const user = req.session.user;
       const username = user.username;
 
       let result = await client.query(
@@ -148,6 +244,51 @@ userRouter.get("/userId", hasLogin, async (req, res, next) => {
     let user = result.rows[0];
     //
     res.json({ user });
+  } catch (error) {
+    next(error);
+  }
+});
+
+userRouter.get("/signup/options", async (req, res, next) => {
+  try {
+    let result = await client.query(
+      `
+    select
+      allergies.name 
+    , allergies.id
+    from allergies
+      `,
+      []
+    );
+    let allergies = result.rows;
+
+    result = await client.query(
+      `
+    select
+      avoid.id 
+    , avoid.name 
+    from avoid
+      `,
+      []
+    );
+    let avoids = result.rows;
+
+    result = await client.query(
+      `
+    select
+      cuisine.id 
+    , cuisine.name 
+    from cuisine
+      `,
+      []
+    );
+    let cuisine = result.rows;
+
+    res.json({
+      allergies,
+      avoids,
+      cuisine,
+    });
   } catch (error) {
     next(error);
   }

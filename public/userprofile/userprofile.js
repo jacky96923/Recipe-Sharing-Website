@@ -36,18 +36,43 @@ loadCard();
 
 // delete button
 
-delete_btn.addEventListener("click", async () => {
-  try {
-    let res = await fetch("/recipe/1", {
-      method: "DELETE",
-    });
+// delete_btn.addEventListener("click", async () => {
+//   try {
+//     let res = await fetch("/recipe/1", {
+//       method: "DELETE",
+//     });
 
-    if (response.ok) {
-      console.log("Recipe deleted");
-    } else {
-      console.error("Failed to delete recipe");
+//     if (response.ok) {
+//       console.log("Recipe deleted");
+//     } else {
+//       console.error("Failed to delete recipe");
+//     }
+//   } catch (error) {
+//     console.error("error loading content:", error);
+//   }
+// });
+
+// Make an HTTP request to retrieve user data
+fetch("/userprofile")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log("data:", data);
+
+    if (data.error == "not logged in") {
+      location.href = "/login/login.html";
+      return;
     }
-  } catch (error) {
-    console.error("error loading content:", error);
-  }
-});
+    // Populate the profile page with user data
+    document.getElementById("username").textContent = data.user_name;
+    document.getElementById("email").textContent = data.email;
+    document.getElementById("profile-picture").src = data.profile_pic;
+
+    // Populate preferences list
+    const preferencesList = document.getElementById("preferences");
+    for (const preference in data.preferences) {
+      const preferenceItem = document.createElement("li");
+      preferenceItem.textContent = preference;
+      preferencesList.appendChild(preferenceItem);
+    }
+  })
+  .catch((error) => console.error(error));

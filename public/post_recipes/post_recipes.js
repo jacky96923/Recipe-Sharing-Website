@@ -21,6 +21,24 @@ document
         alert(result.error);
         return;
       }
+      // alert("Success!");
+      const modal = document.getElementById("successModal");
+      modal.style.display = "block";
+
+      const recipeLink = document.getElementById("recipeLink");
+      recipeLink.addEventListener("click", function () {
+        // Redirect to the submitted recipe page
+        window.top.location.href = "/recipes/recipes.html";
+        // Replace "/submitted_recipe" with the actual URL of the submitted recipe page
+      });
+
+      const frontPageLink = document.getElementById("frontPageLink");
+      frontPageLink.addEventListener("click", function () {
+        // Redirect to the front page
+        window.top.location.href = "/";
+        // Replace "/" with the actual URL of your front page
+      });
+
       console.log(result);
     } catch (error) {
       console.log(error);

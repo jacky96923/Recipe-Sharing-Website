@@ -78,14 +78,7 @@ function renderData(recipes) {
 
 loadRecipes();
 
-// $(".li-modal").on("click", function (e) {
-//   e.preventDefault();
-//   $("#theModal")
-//     .modal("show")
-//     .find(".modal-content")
-//     .load($(this).attr("href"));
-// });
-
+//load iframe to modal
 let iframe = document.getElementById("modalIframe");
 let modal = document.getElementById("myModal");
 

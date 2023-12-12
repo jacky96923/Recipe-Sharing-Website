@@ -179,22 +179,15 @@ create table user_avoid(
     avoid_id integer references avoid(id)
 );
 
-create table recipe_exclude(
+create table recipe_avoid(
     id serial primary key,
     recipe_id integer references recipe(id),
     avoid_id integer references avoid(id)
 );
 
-create type period_type as enum('breakfast','lunch','dinner');
-
-alter table meal_schedule ADD COLUMN period period_type;
-
-alter table meal_schedule RENAME COLUMN breakfast_recipe_id to recipe_id;
-
-alter table meal_schedule drop column lunch_recipe_id;
-
-alter table meal_schedule drop column dinner_recipe_id;
 alter table recipe drop column video;
+
+drop table user_diet;
 
 
 

@@ -3,7 +3,7 @@ import { client } from "./database";
 import formidable from "formidable";
 import fs from "fs";
 import { randomUUID } from "crypto";
-import { object, string, array } from "cast.ts";
+import { optional, object, string, array } from "cast.ts";
 
 export let post_recipeRouter = Router();
 
@@ -66,9 +66,9 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       let parser = object({
         fields: object({
           recipe_name: string({ nonEmpty: true }),
-          diet: string(),
-          allergies: array(string()),
-          avoid: array(string()),
+          diet: optional(string()),
+          allergies: optional(array(string(), { maybeSingle: true })),
+          avoid: array(string(), { maybeSingle: true }),
           cuisine: string({ nonEmpty: true }),
           calories: string({ nonEmpty: true }),
           name: array(string(), { maybeSingle: true, minLength: 1 }),
@@ -79,6 +79,7 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       });
 
       let input = parser.parse({ fields });
+      console.log("input:", input);
       // hard coded user_id and recipe_id.
       let user_id = 1;
       // let recipe_id = 1;
@@ -99,15 +100,17 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       );
       let recipe_id = result.rows[0].id;
 
-      for (let i = 0; i < input.fields.allergies.length; i++) {
-        let allergies_id = input.fields.allergies[i];
-        console.log("insert recipe_allergies", { recipe_id, allergies_id });
+      if (input.fields.allergies) {
+        for (let i = 0; i < input.fields.allergies.length; i++) {
+          let allergies_id = input.fields.allergies[i];
+          console.log("insert recipe_allergies", { recipe_id, allergies_id });
 
-        await client.query(
-          `INSERT INTO recipe_allergies (recipe_id, allergies_id)
-          VALUES ($1, $2)`,
-          [recipe_id, allergies_id]
-        );
+          await client.query(
+            `INSERT INTO recipe_allergies (recipe_id, allergies_id)
+            VALUES ($1, $2)`,
+            [recipe_id, allergies_id]
+          );
+        }
       }
 
       for (let i = 0; i < input.fields.avoid.length; i++) {
@@ -161,7 +164,13 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       res.json({ message: "submit success" });
       // res.redirect('/post_recipes/submit_success.html')
     } catch (error) {
-      res.json({ error: "Please Fill In the Required Field" });
+      res.json({
+        error:
+          "Please Fill In the Required Field: " +
+          String(error)
+            .replace("TypeError: ", "")
+            .replace("Invalid non-empty string", "missing"),
+      });
     }
   });
 });

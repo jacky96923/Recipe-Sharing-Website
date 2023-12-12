@@ -6,7 +6,7 @@ async function loadAttributes() {
     for (let diet of attributes.diet) {
       document.querySelector(
         "#diet"
-      ).innerHTML += ` <input type="radio" data-group="group1" id=${diet.diet} name="diet" value=${diet.id} checked /> <label for=${diet.diet}>${diet.diet}</label>`;
+      ).innerHTML += ` <input type="radio" data-group="group1" id=${diet.diet} name="diet" value=${diet.id} /> <label for=${diet.diet}>${diet.diet}</label>`;
     }
     for (let allergies of attributes.allergies) {
       document.querySelector(
@@ -21,7 +21,7 @@ async function loadAttributes() {
     for (let cuisine of attributes.cuisine) {
       document.querySelector(
         "#cuisines"
-      ).innerHTML += ` <input type="radio" data-group="group4" id=${cuisine.cuisine} name="cuisine" value=${cuisine.id} checked /> <label for=${cuisine.cuisine}>${cuisine.cuisine}</label>`;
+      ).innerHTML += ` <input type="radio" data-group="group4" id=${cuisine.cuisine} name="cuisine" value=${cuisine.id} /> <label for=${cuisine.cuisine}>${cuisine.cuisine}</label>`;
     }
 
     let inputs = document.getElementsByTagName("input");

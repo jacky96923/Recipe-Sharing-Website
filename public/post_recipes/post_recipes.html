@@ -46,11 +46,11 @@
                 <div id="form_container">
                     <form id="form" action="/submit" method="POST" enctype="multipart/form-data">
                         <div id="form_title">
-                            Submitting Recipe!
+                            
                         </div>
                         <div id="form_recipe_name">
                             <label for="recipe_name">Your Recipe Name:</label>
-                            <input type="recipe_name" name="recipe_name">
+                            <input type="recipe_name" name="recipe_name" required>
                         </div>
                         <div id="form_recipe_details">
                             <div class="form_diet checkbox">
@@ -134,7 +134,7 @@
 
                     </div>
                     <div id="submit_ingredients">
-                        <div id="form_ingredients">    
+                        <div id="form_ingredients" required>    
                             Ingredients: 
                             <br>
                             <div id="ingredient_list">
@@ -172,8 +172,17 @@
             <!-- </div>
             <div class="col-2">
                 
-            </div> -->
-
+            </div> -->      
+            <div id="successModal" class="modal">
+                <div class="modal-content">
+                  <h2>Submission Successful!</h2>
+                  <p>What would you like to do?</p>
+                  <div class="button-container">
+                    <button id="recipeLink">Go See Your Recipe!</button>
+                    <button id="frontPageLink">Back To Front Page!</button>
+                  </div>
+                </div>
+              </div>
         </ul> 
     
       

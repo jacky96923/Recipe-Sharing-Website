@@ -17,8 +17,11 @@ document
       });
       const result = await res.json();
 
+      if (result.error) {
+        alert(result.error);
+        return;
+      }
       console.log(result);
-      console.log(allergies_id);
     } catch (error) {
       console.log(error);
     }

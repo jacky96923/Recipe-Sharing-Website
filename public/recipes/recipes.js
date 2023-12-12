@@ -78,10 +78,35 @@ function renderData(recipes) {
 
 loadRecipes();
 
-$(".li-modal").on("click", function (e) {
-  e.preventDefault();
-  $("#theModal")
-    .modal("show")
-    .find(".modal-content")
-    .load($(this).attr("href"));
+// $(".li-modal").on("click", function (e) {
+//   e.preventDefault();
+//   $("#theModal")
+//     .modal("show")
+//     .find(".modal-content")
+//     .load($(this).attr("href"));
+// });
+
+let iframe = document.getElementById("modalIframe");
+let modal = document.getElementById("myModal");
+
+modal.addEventListener("show.bs.modal", function () {
+  iframe.src = "http://localhost:8200/post_recipes/post_recipes.html";
+});
+
+modal.addEventListener("hide.bs.modal", function () {
+  iframe.src = "";
+});
+
+let iframeWindow = iframe.contentWindow;
+let form = iframeWindow.document.getElementById("form");
+
+let submitButton = iframeWindow.document.getElementById("submit_button");
+let clearAllButton = iframeWindow.document.getElementById("clear_all_button");
+
+submitButton.addEventListener("click", function () {
+  form.submit();
+});
+
+clearAllButton.addEventListener("click", function () {
+  form.reset();
 });

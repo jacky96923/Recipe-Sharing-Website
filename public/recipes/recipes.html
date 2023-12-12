@@ -23,7 +23,7 @@
             <a class="nav-link Login" href="">Login/sign-up</a>
             </li>
             <li class="nav-item">
-                <a class="li-modal" href="http://localhost:8200/post_recipes/post_recipes.html">Post New Recipes</a>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Post New Recipes</button>
             <!-- <a class="nav-link Post_New_Recipes" href="http://localhost:8200/post_recipes/post_recipes.html">Post New Recipes</a> -->
             </li>
             <li class="nav-item">
@@ -119,17 +119,18 @@
             </template>
 
             <!-- Modal -->
-<div id="theModal" class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+<div id="myModal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-content">
+          <iframe id="modalIframe" src="" width="790" height="900" frameborder="0"></iframe>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary">Clear All</button>
           <button type="button" class="btn btn-primary">Submit!</button>
         </div>
       </div>

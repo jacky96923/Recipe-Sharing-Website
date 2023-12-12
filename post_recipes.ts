@@ -65,16 +65,16 @@ post_recipeRouter.post("/submit", (req, res, next) => {
 
       let parser = object({
         fields: object({
-          recipe_name: string(),
+          recipe_name: string({ nonEmpty: true }),
           diet: string(),
-          allergies: array(string(), { maybeSingle: true }),
-          avoid: array(string(), { maybeSingle: true }),
-          cuisine: string(),
-          calories: string(),
+          allergies: array(string()),
+          avoid: array(string()),
+          cuisine: string({ nonEmpty: true }),
+          calories: string({ nonEmpty: true }),
           name: array(string(), { maybeSingle: true, minLength: 1 }),
           amount: array(string(), { maybeSingle: true, minLength: 1 }),
           unit: array(string(), { maybeSingle: true, minLength: 1 }),
-          content_input: string(),
+          content_input: string({ nonEmpty: true }),
         }),
       });
 
@@ -161,7 +161,7 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       res.json({ message: "submit success" });
       // res.redirect('/post_recipes/submit_success.html')
     } catch (error) {
-      res.json({ error: "Missing Content" });
+      res.json({ error: "Please Fill In the Required Field" });
     }
   });
 });

@@ -7,6 +7,7 @@ import { env } from "./env";
 import { post_recipeRouter } from "./post_recipes";
 import { filterResultRouter } from "./filterResult";
 import { filterIngredientRouter } from "./filter";
+import { updateRouter } from "./update";
 
 const app = express();
 
@@ -73,6 +74,7 @@ app.use(post_recipeRouter);
 app.use(filterResultRouter);
 app.use(user_profileRouter);
 app.use(filterIngredientRouter);
+app.use(updateRouter);
 
 //page load setting
 app.use("/uploads", express.static("uploads"));

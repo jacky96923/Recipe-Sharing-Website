@@ -46,6 +46,33 @@ function renderData(profiles) {
     });
   }
 }
+loadCard();
+
+// update button function
+let iframe = document.getElementById("modalIframe");
+let modal = document.getElementById("myModal");
+
+modal.addEventListener("show.bs.modal", function () {
+  iframe.src = "http://localhost:8200/update/update.html";
+});
+
+modal.addEventListener("hide.bs.modal", function () {
+  iframe.src = "";
+});
+
+let iframeWindow = iframe.contentWindow;
+let form = iframeWindow.document.getElementById("form");
+
+let submitButton = iframeWindow.document.getElementById("submit_button");
+let clearAllButton = iframeWindow.document.getElementById("clear_all_button");
+
+submitButton.addEventListener("click", function () {
+  form.submit();
+});
+
+clearAllButton.addEventListener("click", function () {
+  form.reset();
+});
 
 loadCard();
 

@@ -68,10 +68,16 @@ async function searchByIngredients(event) {
       ingredientChoice.title;
 
     recipe_card.querySelector("#coverImage").src =
-      "/upload/" + ingredientChoice.image;
+      "/uploads/" + ingredientChoice.image;
 
     filterItems.appendChild(recipe_card);
 
+    // let buttons = node.querySelectorAll(".buttons");
+    // for (let button of buttons) {
+    //   button.addEventListener("click", () => {
+    //     window.location = `/recipes/recipes.html?id=${recipe_id}`;
+    //   });
+    // }
     // let recipeImage = template.image
     //   .querySelector(".recipeImage")
     //   .cloneNode(true);

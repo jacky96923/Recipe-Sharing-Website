@@ -1,5 +1,3 @@
-// const delete_btn = document.getElementById('deleteButton')
-
 async function loadCard() {
   try {
     let res = await fetch("/userprofile/1");
@@ -15,26 +13,71 @@ function renderData(profiles) {
   let recipe_cardTemplate = document.querySelector("#template");
   let recipe_card = document.querySelector("#recipe_card");
   recipe_card.textContent = " ";
-  for (let profile of profiles.user_profiles) {
+  for (let recipe of profiles.recipes) {
     let node = recipe_cardTemplate.content.cloneNode(true);
     let recipeNameElement = node.querySelector("#recipeName");
     let userNameElement = node.querySelector("#userName");
     let coverImageElement = node.querySelector("#coverImage");
-    for (let i = 0; i < profiles.profile_coverImage.length; i++) {
-      let imagePath = `/uploads/${profiles.profile_coverImage[i].image}`;
-      coverImageElement.src = imagePath;
-    }
+    let imagePath = `/uploads/${recipe.cover_image}`;
+    coverImageElement.src = imagePath;
 
-    recipeNameElement.textContent = profile.recipe_title;
+    recipeNameElement.textContent = recipe.recipe_title;
 
-    userNameElement.textContent = profile.user_name;
+    userNameElement.textContent = recipe.user_name;
+
+    //delete button
+    const delete_btn = node.querySelector(".deleteButton");
     recipe_card.appendChild(node);
+    delete_btn.addEventListener("click", async () => {
+      try {
+        let res = await fetch("/recipe/" + recipe.id, {
+          method: "DELETE",
+        });
+
+        if (res.ok) {
+          console.log("Recipe deleted");
+          loadCard();
+        } else {
+          console.error("Failed to delete recipe");
+        }
+      } catch (error) {
+        console.error("error loading content:", error);
+      }
+    });
   }
 }
+loadCard();
+
+// update button function
+let iframe = document.getElementById("modalIframe");
+let modal = document.getElementById("myModal");
+
+modal.addEventListener("show.bs.modal", function () {
+  iframe.src = "http://localhost:8200/update/update.html";
+});
+
+modal.addEventListener("hide.bs.modal", function () {
+  iframe.src = "";
+});
+
+let iframeWindow = iframe.contentWindow;
+let form = iframeWindow.document.getElementById("form");
+
+let submitButton = iframeWindow.document.getElementById("submit_button");
+let clearAllButton = iframeWindow.document.getElementById("clear_all_button");
+
+submitButton.addEventListener("click", function () {
+  form.submit();
+});
+
+clearAllButton.addEventListener("click", function () {
+  form.reset();
+});
 
 loadCard();
 
 // delete button
+// const delete_btn = document.getElementById("deleteButton");
 
 // delete_btn.addEventListener("click", async () => {
 //   try {

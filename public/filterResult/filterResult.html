@@ -22,31 +22,39 @@
     </style>
   </head>
   <body>
-    <h1>Favourite Choice</h1>
-    <div class="pickResult">
-      <div id="favourResultList">
-        <div class="recipe">
-          <img src="/upload/chickenleg.jpg" />
-          <div id="title">chickenleg</div>
-          </div>
-          <!-- <div class="recipe">
+
+    <main hidden>
+      <h1>Favourite Choice</h1>
+      <div class="pickResult">
+        <div id="favourResultList">
+          <div class="recipe">
             <img src="/upload/chickenleg.jpg" />
-            <div>chickenleg</div>
-            </div> -->
-          <!-- <span style="border:10px" solid #FFA500>
-            <select id="title" class="recipe" style="border: red">
-          </select>
-        </span> -->
+            <div id="title">chickenleg</div>
+            </div>
+            <!-- <div class="recipe">
+              <img src="/upload/chickenleg.jpg" />
+              <div>chickenleg</div>
+              </div> -->
+            <!-- <span style="border:10px" solid #FFA500>
+              <select id="title" class="recipe" style="border: red">
+            </select>
+          </span> -->
+          </div>
         </div>
+        <button onclick="selectMealImage()">Selection</button>
       </div>
-      <button onclick="selectMealImage()">選擇</button>
-    </div>
+  
+      <h1>Suggestions</h1>
+  
+      <div class="chosen">
+        <button>Selection</button>
+      </div>
+    </main>
+    <script src="/nav.js"></script>
 
-    <h1>Suggestions</h1>
 
-    <div class="chosen">
-      <button>選擇</button>
-    </div>
+
+
 
  
     <script

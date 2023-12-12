@@ -1,5 +1,3 @@
-// import { loadAttributes } from "../loadAttributes.js";
-
 loadAttributes();
 
 document
@@ -11,7 +9,7 @@ document
     const form = event.target;
     const formObject = new FormData(form);
     try {
-      const res = await fetch("/submit", {
+      const res = await fetch("/update", {
         method: "POST",
         body: formObject,
       });

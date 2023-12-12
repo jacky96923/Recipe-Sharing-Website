@@ -29,11 +29,11 @@
 }
 
 /* #form_title {
-  border-style: solid;
-  border-width: 1px;
-  height: 3rem;
-  width: 48rem;
-} */
+    border-style: solid;
+    border-width: 1px;
+    height: 3rem;
+    width: 48rem;
+  } */
 
 #form_recipe_name {
   border-style: solid;
@@ -53,11 +53,11 @@
 }
 
 /* .checkbox{
-    border-style: solid;
-    border-width: 1px;
-    height: auto;
-    width: 34rem;
-} */
+      border-style: solid;
+      border-width: 1px;
+      height: auto;
+      width: 34rem;
+  } */
 
 .checkbox-container {
   display: flex;

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="filter.css" rel="stylesheet" />
+    <!-- <link href="html.css" rel="stylesheet" /> -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,57 +17,78 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Filter</title>
+
+    <title>Recipe Explorer</title>
   </head>
   <body>
-    <h1>Filter</h1>
-    <h2>Selections For</h2>
-    <div id="filterItems"></div>
+    <main hidden>
+      <h1>Recipe Explorer</h1>
+      <h2>Selections For</h2>
 
-    <!-- <div class="filter" id="calories">
-      <form method="post" action="matching">
-        <label>Calories <input type="text" name="number" /></label>
-      </form>
-    </div> -->
+      <!-- <div class="filter" id="calories">
+        <form method="post" action="matching">
+          <label>Calories <input type="text" name="number" /></label>
+        </form>
+      </div> -->
 
-    <div class="filter" id="ingredients">
-      <form method="get" action="/recipes/search/by-ingredient">
-        <label
-          >Ingredients
-          <input
-            class="ingredient"
-            id="ingredient1"
-            type="text"
-            name="ingredient_name"
-          />
-          <input
-            class="ingredient"
-            id="ingredient2"
-            type="text"
-            name="ingredient_name"
-          />
-          <input
-            class="ingredient"
-            id="ingredient3"
-            type="text"
-            name="ingredient_name"
-          />
-          <input
-            class="ingredient"
-            id="ingredient4"
-            type="text"
-            name="ingredient_name"
-          />
-        </label>
-        <button class="confirmation" id="goodchoice ">確定</button>
-      </form>
-    </div>
+      <div class="filter" id="ingredients">
+        <form
+          method="get"
+          action="/recipes/search/by-ingredient"
+          onsubmit="searchByIngredients(event)"
+        >
+          <label
+            >Ingredients
+            <input
+              class="ingredient"
+              id="ingredient1"
+              type="text"
+              name="ingredient_name"
+            />
+            <input
+              class="ingredient"
+              id="ingredient2"
+              type="text"
+              name="ingredient_name"
+            />
+            <input
+              class="ingredient"
+              id="ingredient3"
+              type="text"
+              name="ingredient_name"
+            />
+            <input
+              class="ingredient"
+              id="ingredient4"
+              type="text"
+              name="ingredient_name"
+            />
+          </label>
+          <button class="confirmation" id="goodchoice ">確定</button>
+        </form>
+      </div>
 
-    <h2>已選擇喜好</h2>
-    <h4>Diets</h4>
-    <h4>Allegies</h4>
-    <h4>Disliked</h4>
-    <h4>Cuisines</h4>
+      <div id="filterItems"></div>
+
+      <!-- below from jacky userprofile.html -->
+      <template id="template">
+        <div class="recipe_card">
+          <div id="recipe_card_inner">
+            <div id="coverImage_container">
+              <img id="coverImage" src=" " />
+            </div>
+            <div id="recipeInfo_container">
+              <div id="recipeName_container">
+                <div class="recipeName">Fake Chicken</div>
+              </div>
+              <button class="selectionButton">Details</button>
+            </div>
+          </div>
+        </div>
+      </template>
+    </main>
+
+    <script src="/nav.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
@@ -74,5 +96,11 @@
       crossorigin="anonymous"
     ></script>
     <script src="filter.js"></script>
+    <!-- <script src="html.js"></script>
+    <script>
+      $(function () {
+        $("#navbar").load("index.html");
+      });
+    </script> -->
   </body>
 </html>

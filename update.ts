@@ -5,13 +5,14 @@ import fs from "fs";
 import { randomUUID } from "crypto";
 import { optional, object, string, array } from "cast.ts";
 
-export let post_recipeRouter = Router();
+export let updateRouter = Router();
 
 //formidable
 const uploadDir = "uploads";
 fs.mkdirSync(uploadDir, { recursive: true });
 
-post_recipeRouter.get("/attributes", async (req, res) => {
+//loading attributes options
+updateRouter.get("/attributes", async (req, res) => {
   try {
     let result1 = await client.query(`select id, name as Diet from diet;`);
     let result2 = await client.query(
@@ -38,7 +39,8 @@ post_recipeRouter.get("/attributes", async (req, res) => {
   }
 });
 
-post_recipeRouter.post("/submit", (req, res, next) => {
+//update the recipe by resubmitting the entire recipe
+updateRouter.post("/update", (req, res, next) => {
   console.log("uploading");
   let form = formidable({
     uploadDir,
@@ -81,34 +83,34 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       let input = parser.parse({ fields });
       console.log("input:", input);
       // hard coded user_id and recipe_id.
-      let user_id = 1;
-      // let recipe_id = 1;
+      // let user_id = 1;
+      let recipe_id = 45;
       let title = input.fields.recipe_name;
       let cuisine_id = input.fields.cuisine;
       let calories = input.fields.calories;
       let content = input.fields.content_input;
       let diet_id = input.fields.diet;
 
-      let result = await client.query(
+      await client.query(
         /* sql */ `
-        INSERT INTO recipe 
-        (user_id, title, cuisine_id, calories, content, diet_id)
-        VALUES ($1, $2, $3, $4, $5, $6)
-        returning id
-        `,
-        [user_id, title, cuisine_id, calories, content, diet_id]
+          UPDATE recipe
+          SET title = $1, cuisine_id = $2, calories = $3, content = $4, diet_id = $5
+          WHERE id = $6
+          `,
+        [title, cuisine_id, calories, content, diet_id, recipe_id]
       );
-      let recipe_id = result.rows[0].id;
+      // let recipe_id = result.rows[0].id;
 
       if (input.fields.allergies) {
         for (let i = 0; i < input.fields.allergies.length; i++) {
           let allergies_id = input.fields.allergies[i];
-          console.log("insert recipe_allergies", { recipe_id, allergies_id });
+          //   console.log("insert recipe_allergies", { recipe_id, allergies_id });
 
           await client.query(
-            `INSERT INTO recipe_allergies (recipe_id, allergies_id)
-            VALUES ($1, $2)`,
-            [recipe_id, allergies_id]
+            `UPDATE recipe_allergies 
+              SET allergies_id = $1
+              WHERE recipe_id = $2`,
+            [allergies_id, recipe_id]
           );
         }
       }
@@ -116,9 +118,11 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       for (let i = 0; i < input.fields.avoid.length; i++) {
         let avoid_id = input.fields.avoid[i];
         await client.query(
-          `INSERT INTO recipe_avoid (recipe_id, avoid_id)
-          VALUES ($1, $2)`,
-          [recipe_id, avoid_id]
+          `UPDATE recipe_avoid
+            SET avoid_id = $1
+            WHERE recipe_id = $2
+            `,
+          [avoid_id, recipe_id]
         );
       }
 
@@ -127,9 +131,10 @@ post_recipeRouter.post("/submit", (req, res, next) => {
         let amount = input.fields.amount[i];
         let unit = input.fields.unit[i];
         await client.query(
-          `INSERT INTO recipe_ingredient (recipe_id, ingredient_name, amount, unit)
-                  VALUES ($1, $2, $3, $4)`,
-          [recipe_id, name, amount, unit]
+          `UPDATE recipe_ingredient
+            SET ingredient_name = $1, amount = $2, unit = $3
+            WHERE recipe_id = $4`,
+          [name, amount, unit, recipe_id]
         );
       }
 
@@ -142,9 +147,10 @@ post_recipeRouter.post("/submit", (req, res, next) => {
       let is_cover = true;
 
       await client.query(
-        `INSERT INTO recipe_image (recipe_id, image, is_cover)
-                  VALUES ($1, $2, $3)`,
-        [recipe_id, imageCover, is_cover]
+        `UPDATE recipe_image
+          SET image = $1, is_cover = $2
+          WHERE recipe_id = $3`,
+        [imageCover, is_cover, recipe_id]
       );
 
       let image;
@@ -154,14 +160,15 @@ post_recipeRouter.post("/submit", (req, res, next) => {
           let is_cover = false;
           console.log({ image });
           await client.query(
-            `INSERT INTO recipe_image (recipe_id, image, is_cover)
-            VALUES ($1, $2, $3)`,
-            [recipe_id, image, is_cover]
+            `UPDATE recipe_image 
+              SET image = $1, is_cover = $2
+              WHERE recipe_id = $3`,
+            [image, is_cover, recipe_id]
           );
         }
       }
 
-      res.json({ message: "submit success" });
+      res.json({ message: "update success" });
       // res.redirect('/post_recipes/submit_success.html')
     } catch (error) {
       res.json({

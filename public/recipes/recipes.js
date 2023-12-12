@@ -1,6 +1,6 @@
 async function loadRecipes() {
   try {
-    let res = await fetch("/recipe/1");
+    let res = await fetch("/recipe/31");
     let recipes = await res.json();
 
     renderData(recipes);
@@ -17,7 +17,7 @@ function renderData(recipes) {
   let recipeImageCoverElement = document.querySelector("#recipeCover");
   for (let i = 0; i < recipes.recipe_images.length; i++) {
     if (recipes.recipe_images[i].is_cover) {
-      recipeImageCoverElement.src = recipes.recipe_images[i].image;
+      recipeImageCoverElement.src = `/uploads/${recipes.recipe_images[i].image}`;
     }
   }
 
@@ -40,7 +40,7 @@ function renderData(recipes) {
   }
 
   let profile_picElement = document.querySelector("#profile_pic");
-  profile_picElement.src = recipes.recipe_info[0].profile_pic;
+  profile_picElement.src = `/uploads/${recipes.recipe_info[0].profile_pic}`;
 
   let userinfoElement = document.querySelector("#user_info");
   userinfoElement.textContent = recipes.recipe_info[0].user_name;
@@ -70,7 +70,7 @@ function renderData(recipes) {
       document.querySelector(
         ".carousel-inner"
       ).innerHTML += ` <div class="carousel-item active" data-bs-interval="2000">
-      <img src="${recipes.recipe_images[i].image}" class="d-block w-100">
+      <img src="/uploads/${recipes.recipe_images[i].image}" class="d-block w-100">
     </div>`;
     }
   }
@@ -78,10 +78,28 @@ function renderData(recipes) {
 
 loadRecipes();
 
-$(".li-modal").on("click", function (e) {
-  e.preventDefault();
-  $("#theModal")
-    .modal("show")
-    .find(".modal-content")
-    .load($(this).attr("href"));
+//load iframe to modal
+let iframe = document.getElementById("modalIframe");
+let modal = document.getElementById("myModal");
+
+modal.addEventListener("show.bs.modal", function () {
+  iframe.src = "http://localhost:8200/post_recipes/post_recipes.html";
+});
+
+modal.addEventListener("hide.bs.modal", function () {
+  iframe.src = "";
+});
+
+let iframeWindow = iframe.contentWindow;
+let form = iframeWindow.document.getElementById("form");
+
+let submitButton = iframeWindow.document.getElementById("submit_button");
+let clearAllButton = iframeWindow.document.getElementById("clear_all_button");
+
+submitButton.addEventListener("click", function () {
+  form.submit();
+});
+
+clearAllButton.addEventListener("click", function () {
+  form.reset();
 });

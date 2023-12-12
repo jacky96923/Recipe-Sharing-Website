@@ -260,3 +260,7 @@
   background-color: #fff;
   padding: 20px;
 }
+
+.modal-xl {
+  width: 830px;
+}

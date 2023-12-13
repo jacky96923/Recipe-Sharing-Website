@@ -9,7 +9,7 @@ document
     const form = event.target;
     const formObject = new FormData(form);
     try {
-      const res = await fetch("/submit", {
+      const res = await fetch("/update", {
         method: "POST",
         body: formObject,
       });
@@ -24,10 +24,9 @@ document
       modal.style.display = "block";
 
       const recipeLink = document.getElementById("recipeLink");
-
       recipeLink.addEventListener("click", function () {
         // Redirect to the submitted recipe page
-        window.top.location.href = `/recipes/recipes.html?id=${result}`;
+        window.top.location.href = "/recipes/recipes.html";
         // Replace "/submitted_recipe" with the actual URL of the submitted recipe page
       });
 

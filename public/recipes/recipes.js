@@ -35,7 +35,7 @@ function renderData(recipes) {
   let allergiesTemplate = document.querySelector("#template_2");
   let allergiesContainer = document.querySelector("#allergies_container");
   allergiesContainer.textContent = " ";
-  for (allergies of recipes.recipe_allergies) {
+  for (let allergies of recipes.recipe_allergies) {
     let node = allergiesTemplate.content.cloneNode(true);
     let allergiesElement = node.querySelector("#allergies");
 

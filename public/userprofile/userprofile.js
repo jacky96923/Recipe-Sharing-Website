@@ -1,7 +1,9 @@
 async function loadCard() {
+
   try {
     let res = await fetch("/userprofile/1");
     let profiles = await res.json();
+  
 
     renderData(profiles);
   } catch (error) {
@@ -25,6 +27,10 @@ function renderData(profiles) {
 
     userNameElement.textContent = recipe.user_name;
 
+
+    const form = event.target;
+    const formObject = new FormData(form);
+
     //delete button
     const delete_btn = node.querySelector(".deleteButton");
     recipe_card.appendChild(node);
@@ -44,7 +50,44 @@ function renderData(profiles) {
         console.error("error loading content:", error);
       }
     });
-  }
+
+  //   document
+  // .querySelector("#form")
+  // .addEventListener("submit", async function (event) {
+  //   event.preventDefault();
+
+  //   // Serialize the Form afterwards
+  //   const form = event.target;
+  //   const formObject = new FormData(form);
+  //   try {
+  //     const res = await fetch("/submit", {
+  //       method: "POST",
+  //       body: formObject,
+  //     });
+  //     const result = await res.json();
+
+  //     if (result.error) {
+  //       alert(result.error);
+  //       return;
+  //     }
+  //     // alert("Success!");
+  //     const modal = document.getElementById("successModal");
+  //     modal.style.display = "block";
+
+  //     const recipeLink = document.getElementById("recipeLink");
+
+  //     recipeLink.addEventListener("click", function () {
+  //       // Redirect to the submitted recipe page
+  //       window.top.location.href = `/recipes/recipes.html?id=${result}`;
+  //       // Replace "/submitted_recipe" with the actual URL of the submitted recipe page
+  //     });
+
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+
+
+  // }
 }
 
 loadCard();
@@ -58,7 +101,7 @@ loadCard();
 //       method: "DELETE",
 //     });
 
-//     if (response.ok) {
+//     if (res.ok) {
 //       console.log("Recipe deleted");
 //     } else {
 //       console.error("Failed to delete recipe");
@@ -68,27 +111,4 @@ loadCard();
 //   }
 // });
 
-// Make an HTTP request to retrieve user data
-fetch("/userprofile")
-  .then((response) => response.json())
-  .then((data) => {
-    console.log("data:", data);
-
-    if (data.error == "not logged in") {
-      location.href = "/login/login.html";
-      return;
-    }
-    // Populate the profile page with user data
-    document.getElementById("username").textContent = data.user_name;
-    document.getElementById("email").textContent = data.email;
-    document.getElementById("profile-picture").src = data.profile_pic;
-
-    // Populate preferences list
-    const preferencesList = document.getElementById("preferences");
-    for (const preference in data.preferences) {
-      const preferenceItem = document.createElement("li");
-      preferenceItem.textContent = preference;
-      preferencesList.appendChild(preferenceItem);
-    }
-  })
-  .catch((error) => console.error(error));
+// loadCard();

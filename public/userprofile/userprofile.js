@@ -1,9 +1,7 @@
 async function loadCard() {
-
   try {
     let res = await fetch("/userprofile/1");
     let profiles = await res.json();
-  
 
     renderData(profiles);
   } catch (error) {
@@ -27,10 +25,6 @@ function renderData(profiles) {
 
     userNameElement.textContent = recipe.user_name;
 
-
-    const form = event.target;
-    const formObject = new FormData(form);
-
     //delete button
     const delete_btn = node.querySelector(".deleteButton");
     recipe_card.appendChild(node);
@@ -50,6 +44,7 @@ function renderData(profiles) {
         console.error("error loading content:", error);
       }
     });
+  }
 
   //   document
   // .querySelector("#form")
@@ -86,29 +81,7 @@ function renderData(profiles) {
   //     console.log(error);
   //   }
 
-
   // }
 }
 
 loadCard();
-
-// delete button
-// const delete_btn = document.getElementById("deleteButton");
-
-// delete_btn.addEventListener("click", async () => {
-//   try {
-//     let res = await fetch("/recipe/1", {
-//       method: "DELETE",
-//     });
-
-//     if (res.ok) {
-//       console.log("Recipe deleted");
-//     } else {
-//       console.error("Failed to delete recipe");
-//     }
-//   } catch (error) {
-//     console.error("error loading content:", error);
-//   }
-// });
-
-// loadCard();

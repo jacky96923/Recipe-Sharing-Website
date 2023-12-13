@@ -5,7 +5,7 @@ app.id = "app";
 app.className = "d-flex";
 app.innerHTML = /* html */ `
 <nav>
-    <ul class="nav flex-column">
+   */ <ul class="nav flex-column">
         <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="#">
                 <img
@@ -39,7 +39,7 @@ app.innerHTML = /* html */ `
             >Get Meal Plan!</a
             >
         </li>
-    </ul>
+    </ul>*\
 
                 <!-- Modal -->
 <div id="myModal" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" >

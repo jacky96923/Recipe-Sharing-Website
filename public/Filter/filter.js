@@ -74,7 +74,7 @@ async function searchByIngredients(event) {
   }
 }
 // let buttontemplate = document.querySelector(".selectionButton");
-// // buttontemplate.remove();
+// buttontemplate.remove();
 
 async function allIngredients() {
   console.log("allIngredients");
@@ -101,6 +101,10 @@ async function allIngredients() {
     recipe_card.querySelector("#coverImage").src =
       "/uploads/" + allIngredient.image;
 
+    recipe_card.querySelector("button").addEventListener("click", () => {
+      window.location = `/recipes/recipes.html?id=${allIngredient.id}`;
+    });
+
     filterItems.appendChild(recipe_card);
 
     let recipe_id = allIngredient.id;
@@ -108,7 +112,7 @@ async function allIngredients() {
 
     // let node = buttontemplate.cloneNode(true);
     // node.addEventListener("click", () => {
-    //   window.location = `/recipes/recipes.html?id=${recipe_id}`;
+    //   window.location.href = `/recipes/recipes.html?id=${recipe_id}`;
     // });
     // recipe_card.appendChild(node);
   }
@@ -122,10 +126,10 @@ allIngredients();
 // let buttons = node.querySelectorAll(".detailContent");
 // for (let button of buttons) {
 //   button.addEventListener("click", () => {
-//     window.location = `/recipes/recipes.html?id=${recipe_id}`};
+//     window.location.href = `/recipes/recipes.html?id=${recipe_id}`};
 //   )};
 
-console.log(recipe_id);
+// console.log(recipe_id);
 
 //   }
 

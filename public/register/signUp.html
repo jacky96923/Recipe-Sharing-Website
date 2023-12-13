@@ -37,27 +37,18 @@
             <span class="fa fa-lock"></span>
             <input type="password" name="password" placeholder="Password" />
           </div>
-          <div class="field space">
+          <div class="space">
             <span class="fa fa-profile_picture"></span>
-            <input type="file" name="profilePicture" accept="image/*" />
+            <input
+              type="file"
+              name="profilePicture"
+              id="profile-pic"
+              accept="image/*"
+            />
           </div>
-          <br />
+          <!-- <br /> -->
           <hr />
-          <!-- Diet:<br />
-          <div style="display: inline-block">
-            <input type="radio" name="diet" value="Vegetarian" /> Vegetarian
-          </div>
-          <div style="display: inline-block">
-            <input type="radio" name="diet" value="Meat Lover" /> Meat Lover
-          </div>
-          <div style="display: inline-block">
-            <input type="radio" name="diet" value="Pescetarian" /> Pescetarian
-          </div>
-          <div style="display: inline-block">
-            <input type="radio" name="diet" value="Ketogenic" /> Ketogenic
-          </div>
-          <hr /> -->
-          Allergies in items:
+          <span id="Title">Allergies in items:</span>
           <div id="allergyList">
             <!-- <label style="display: inline-block; padding: 0.25rem">
               <input type="checkbox" name="allergy" /> <span>Peanut</span>
@@ -73,7 +64,8 @@
             </div> -->
           </div>
           <hr />
-          Disliked items:<br />
+          <span id="Title">Disliked items:</span>
+          <br />
           <div id="dislikedItem">
             <!-- <label style="display: inline-block; padding: 0.25rem">
               <input type="checkbox" name="avoid" /> <span>Peanut</span>
@@ -97,7 +89,8 @@
             <input type="checkbox" name="Potatoes" /> Potatoes -->
           </div>
           <hr />
-          Cuisines:<br />
+          <span id="Title">Cuisines:</span>
+          <br />
           <div id="cuisineList">
             <!-- <label style="display: inline-block; padding: 0.25rem">
               <input type="checkbox" name="cuisine" /> <span>Peanut</span>
@@ -140,5 +133,8 @@
       </div>
     </div>
     <script src="/register/signUp.js"></script>
+    <video autoplay muted loop id="myVideo2">
+      <source src="/register/register.mp4" type="video/mp4" />
+    </video>
   </body>
 </html>

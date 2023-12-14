@@ -9,10 +9,29 @@
   <body>
     <h1>User Profile</h1>
     <div id="profile-container">
-      <h2 id="username"></h2>
-      <p id="email"></p>
+      <h2>Personal Information</h2>
+      <p>username: <b data-text="username"></b></p>
+      <p>
+        email:
+        <span data-text="email"></span>
+      </p>
       <img id="profile-picture" src="" alt="Profile Picture" />
-      <h3>Preferences</h3>
+      <h2>Allergies</h2>
+      <div id="allergyList" data-template="allergy" data-bind="allergies"></div>
+      <template data-name="allergy">
+        <div class="allergy">
+          <label>
+            <input
+              type="checkbox"
+              data-checked="is_selected"
+              onchange="saveAllergy(this)"
+              data-value="id"
+            />
+            <span data-text="name">xxx</span>
+          </label>
+        </div>
+      </template>
+      <h2>Preferences</h2>
       <ul id="preferences"></ul>
     </div>
 
@@ -62,6 +81,9 @@
         </div>
       </div>
     </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/data-template@1.10/base.js"></script>
+    <script src="/common.js"></script>
     <script src="/userprofile/userprofile.js"></script>
     <!-- <img src="/profile_img/f9c36596c26b8d65e9131fd691a73c37" /> -->
   </body>

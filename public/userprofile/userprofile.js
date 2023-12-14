@@ -1,87 +1,76 @@
-async function loadCard() {
+async function loadProfile() {
   try {
-    let res = await fetch("/userprofile/1");
-    let profiles = await res.json();
+    let res = await fetch("/userprofile", {
+      headers: {
+        Accept: "application/json",
+      },
+    });
+    let json = await res.json();
+    if (json.error) {
+      alert(json.error);
+      if (res.status == 401) {
+        location.href = "/login.html";
+      }
+      return;
+    }
 
-    renderData(profiles);
+    let profileContainer = document.querySelector("#profile-container");
+
+    document.querySelector("#profile-picture").src =
+      "/uploads/" + json.user.profile_pic;
+
+    // document.querySelector("#username").textContent = json.user.username;
+
+    renderData(profileContainer, json.user);
+
+    renderTemplate(allergyList, json);
+
+    let recipe_cardTemplate = document.querySelector("#template");
+    let recipe_card = document.querySelector("#recipe_card");
+    recipe_card.textContent = " ";
+    for (let recipe of json.recipes) {
+      let node = recipe_cardTemplate.content.cloneNode(true);
+      let recipeNameElement = node.querySelector("#recipeName");
+      let userNameElement = node.querySelector("#userName");
+      let coverImageElement = node.querySelector("#coverImage");
+      let imagePath = `/uploads/${recipe.cover_image}`;
+      coverImageElement.src = imagePath;
+
+      recipeNameElement.textContent = recipe.recipe_title;
+
+      userNameElement.textContent = recipe.user_name;
+
+      //delete button
+      const delete_btn = node.querySelector(".deleteButton");
+      recipe_card.appendChild(node);
+      delete_btn.addEventListener("click", async () => {
+        try {
+          let res = await fetch("/recipe/" + recipe.id, {
+            method: "DELETE",
+          });
+
+          if (res.ok) {
+            console.log("Recipe deleted");
+            loadCard();
+          } else {
+            console.error("Failed to delete recipe");
+          }
+        } catch (error) {
+          console.error("error loading content:", error);
+        }
+      });
+    }
   } catch (error) {
     console.error("error loading content:", error);
   }
 }
 
-function renderData(profiles) {
-  let recipe_cardTemplate = document.querySelector("#template");
-  let recipe_card = document.querySelector("#recipe_card");
-  recipe_card.textContent = " ";
-  for (let recipe of profiles.recipes) {
-    let node = recipe_cardTemplate.content.cloneNode(true);
-    let recipeNameElement = node.querySelector("#recipeName");
-    let userNameElement = node.querySelector("#userName");
-    let coverImageElement = node.querySelector("#coverImage");
-    let imagePath = `/uploads/${recipe.cover_image}`;
-    coverImageElement.src = imagePath;
-
-    recipeNameElement.textContent = recipe.recipe_title;
-
-    userNameElement.textContent = recipe.user_name;
-
-    //delete button
-    const delete_btn = node.querySelector(".deleteButton");
-    recipe_card.appendChild(node);
-    delete_btn.addEventListener("click", async () => {
-      try {
-        let res = await fetch("/recipe/" + recipe.id, {
-          method: "DELETE",
-        });
-
-        if (res.ok) {
-          console.log("Recipe deleted");
-          loadCard();
-        } else {
-          console.error("Failed to delete recipe");
-        }
-      } catch (error) {
-        console.error("error loading content:", error);
-      }
-    });
-  }
-
-  //   document
-  // .querySelector("#form")
-  // .addEventListener("submit", async function (event) {
-  //   event.preventDefault();
-
-  //   // Serialize the Form afterwards
-  //   const form = event.target;
-  //   const formObject = new FormData(form);
-  //   try {
-  //     const res = await fetch("/submit", {
-  //       method: "POST",
-  //       body: formObject,
-  //     });
-  //     const result = await res.json();
-
-  //     if (result.error) {
-  //       alert(result.error);
-  //       return;
-  //     }
-  //     // alert("Success!");
-  //     const modal = document.getElementById("successModal");
-  //     modal.style.display = "block";
-
-  //     const recipeLink = document.getElementById("recipeLink");
-
-  //     recipeLink.addEventListener("click", function () {
-  //       // Redirect to the submitted recipe page
-  //       window.top.location.href = `/recipes/recipes.html?id=${result}`;
-  //       // Replace "/submitted_recipe" with the actual URL of the submitted recipe page
-  //     });
-
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-
-  // }
+async function saveAllergy(input) {
+  let id = input.value;
+  let url = `/user_allergies/${id}`;
+  let method = input.checked ? "POST" : "DELETE";
+  let json = await callAPI(method, url);
+  showSavedMessage(input.parentElement);
 }
 
-loadCard();
+loadProfile();

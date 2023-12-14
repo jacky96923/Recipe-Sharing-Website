@@ -3,19 +3,22 @@ import express from "express";
 // import { HttpError } from "./http-error";
 import "./session";
 import { HttpError } from "./error";
+import { env } from "./env";
 
 export function hasLogin(
   req: express.Request,
   res: express.Response,
   next: express.NextFunction
 ) {
+  if (env.FAKE_SESSION && !req.session.user) {
+    req.session.user = { id: 14, username: "fake session user" };
+  }
   if (req.session.user) {
     next();
     return;
   }
-  res.status(400);
+  res.status(401);
   let accept = req.headers.accept;
-  console.log(404, { accept: req.url });
   if (accept?.includes("json") && !accept.includes("html")) {
     res.json({ error: "This API is only for user, not for guest" });
     return;

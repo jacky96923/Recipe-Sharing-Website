@@ -1,0 +1,5 @@
+.saved-message {
+  display: inline-block;
+  color: green;
+  padding-inline-start: 1rem;
+}

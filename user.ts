@@ -2,7 +2,7 @@ import { Router } from "express";
 import { client } from "./database";
 import { comparePassword, hashPassword } from "./hash";
 import { hasLogin } from "./guard";
-const fs = require("fs");
+import { array, id, object, optional } from "cast.ts";
 
 const multer = require("multer");
 const upload = multer({ dest: "uploads/" });
@@ -64,12 +64,19 @@ userRouter.post(
   upload.single("profilePicture"),
   async (req, res, next) => {
     try {
-      console.log("req.body:", req.body);
+      console.log("signUp req.body:", req.body);
+
+      let parser = object({
+        body: object({
+          allergies: optional(array(id(), { maybeSingle: true })),
+        }),
+      });
+      let input = parser.parse(req);
+      console.log("signup input:", input);
 
       let username = req.body.username;
       let password = req.body.password;
       let email = req.body.email;
-      let allergy = req.body.allergy;
       let avoid = req.body.avoid;
       let cuisine = req.body.cuisine;
       let file = (req as any).file;
@@ -78,15 +85,7 @@ userRouter.post(
       // let SeaFood = req.body.checkbox.value;
       // let Gluten = req.body.checkbox.value;
 
-      let newImagePath = "";
-      if (file) {
-        var oldPath = file.path;
-        var newPath = "public/profile_img/" + file.filename;
-        newImagePath = "/profile_img/" + file.filename;
-        fs.rename(oldPath, newPath, function () {
-          console.log("Successfully renamed - AKA moved!");
-        });
-      }
+      let filename = file?.filename;
       const password_hash = await hashPassword(password);
       console.log(password, password_hash);
       let result = await client.query(
@@ -96,18 +95,12 @@ userRouter.post(
          ($1,$2,$3,$4)
         returning id`,
 
-        [username, email, password_hash, newImagePath]
+        [username, email, password_hash, filename]
       );
       let user_id = result.rows[0].id;
       console.log("user_id", user_id);
 
-      if (!allergy) {
-        allergy = [];
-      }
-      if (!Array.isArray(allergy)) {
-        allergy = [allergy];
-      }
-      for (let allergy_id of allergy) {
+      for (let allergy_id of input.body.allergies || []) {
         await client.query(
           `insert into "user_allergies"
                (user_id, allergies_id)
@@ -194,6 +187,12 @@ userRouter.post(
 
       // if (preferences.diet.vegetarian == 1) ...
       // return res.json({ user: username, password: password });
+
+      req.session.user = {
+        id: user_id,
+        username,
+      };
+
       return res.redirect("/");
     } catch (error) {
       res.status(500);
@@ -202,35 +201,6 @@ userRouter.post(
     return null;
   }
 );
-
-userRouter.get("/userprofile", async (req, res, next) => {
-  try {
-    if (req.session.user) {
-      //res.json(req.session.user);
-      const user = req.session.user;
-      const username = user.username;
-
-      let result = await client.query(
-        `select * from "users" where user_name = $1`,
-        [username]
-      );
-
-      // let user: { password: string }[] = result.rows;
-      let dbuser = result.rows[0];
-      let preferences = dbuser.preferences;
-      if (preferences.abc == 1) {
-        console.log("It is 1!!!");
-      }
-      res.json(dbuser);
-    } else {
-      res.json({ error: "not logged in" });
-    }
-    return;
-  } catch (error) {
-    res.status(500);
-    res.json({ error: String(error) });
-  }
-});
 
 userRouter.get("/userId", hasLogin, async (req, res, next) => {
   try {

@@ -1,21 +1,21 @@
-import express from "express";
+import express, { ErrorRequestHandler } from "express";
 var bodyParser = require("body-parser");
-import path from "path";
+import path, { join } from "path";
 import dayjs from "dayjs";
 import { recipeRouter } from "./recipes";
 import { env } from "./env";
 import { post_recipeRouter } from "./post_recipes";
 import { filterResultRouter } from "./filterResult";
 import { filterIngredientRouter } from "./filter";
+import userRouter from "./user";
+import { sessionMiddleware } from "./session";
+import { user_profileRouter } from "./userprofile";
+import { HttpError } from "./error";
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true })); //for form submissions
 app.use(express.json());
-
-import userRouter from "./user";
-import { sessionMiddleware } from "./session";
-import { user_profileRouter } from "./userprofile";
 
 // const app = express();
 
@@ -77,7 +77,23 @@ app.use(filterIngredientRouter);
 //page load setting
 app.use("/uploads", express.static("uploads"));
 app.use("/upload", express.static("upload"));
+app.use(express.static(join("public", "login")));
+app.use(express.static(join("public", "userprofile")));
 app.use(express.static("public"));
+
+app.use((req, res, next) => {
+  next(new HttpError(404, "route not found"));
+});
+
+let errorHandler: ErrorRequestHandler = (error: HttpError, req, res, next) => {
+  res.status(error.statusCode || 500);
+  if (req.headers.accept == "application/json") {
+    res.json({ error: String(error) });
+  } else {
+    res.end(String(error));
+  }
+};
+app.use(errorHandler);
 
 //page port setting
 app.listen(env.PORT, () => {

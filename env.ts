@@ -9,6 +9,7 @@ export let env = {
   DB_NAME: "",
   DB_USERNAME: "",
   DB_PASSWORD: "",
+  FAKE_SESSION: 1,
 };
 
 populateEnv(env, { mode: "halt" });
